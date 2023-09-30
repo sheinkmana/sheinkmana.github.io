@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://sheinkmana.github.io/sheinkmana.github.io/sitemap.xml
+Sitemap: https://sheinkmana.github.io/sitemap.xml
