@@ -6,7 +6,7 @@ subtitle: <a href='#'>4th year PhD student</a>. The University of Edinburgh.
 
 profile:
   align: right
-  image: prof_pic.jpg
+  image: profile_picture.png
   image_circular: false # crops the image to make it circular
   more_info: >
     <p> Based in London.</p>
