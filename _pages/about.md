@@ -2,14 +2,13 @@
 layout: about
 title: about
 permalink: /
-subtitle: <a href='#'>4th year PhD student</a>. The University of Edinburgh.
+subtitle: PhD candidate at the University of Edinburgh.
 
 profile:
   align: right
   image: profile_picture.png
   image_circular: false # crops the image to make it circular
-  more_info: >
-    <p> Based in London.</p>
+  more_info: That's me.
    
 
 news: false  # includes a list of news items
@@ -18,6 +17,8 @@ selected_papers: false # includes a list of papers marked as "selected={true}"
 social: true  # includes social icons at the bottom of the page
 ---
 
-PhD student working under the supervision of Sara Wade.
+I am a 4th year PhD student working under the supervision of Sara Wade.
+My research aims to develop advances in Bayesian deep modelling. 
+Mainly, I focus on efficient inference schemes and appropriate priors' choices for the data-driven design of the model's architecture.
 
 
