@@ -2,11 +2,14 @@
 layout: page
 permalink: /teaching/
 title: teaching
-description: Materials for courses you taught. Replace this text with your description.
+description: List of the courses where I was or am a tutor
 nav: true
-nav_order: 5
+nav_order: 2
 ---
 
-For now, this page is assumed to be a static description of your courses. You can convert it to a collection similar to `_projects/` so that you can have a dedicated page for each course.
-
-Organize your courses by years, topics, or universities, however you like!
+- Fundamentals of probability 23/24, King's College London
+- Into to the dynamical systems 22/23, King's College London
+- Fundamentals of probability 22/23, King's College London
+- Honors Algebra 21/22, University of Edinburgh
+- Calculus and Applications 20/21, University of Edinburgh
+- Calculus 17/18, HSE Moscow
