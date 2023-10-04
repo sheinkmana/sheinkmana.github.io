@@ -17,7 +17,7 @@ selected_papers: false # includes a list of papers marked as "selected={true}"
 social: true  # includes social icons at the bottom of the page
 ---
 
-I am a 4th year PhD student working under the supervision of Sara Wade.
+I am a 4th year PhD student working under the supervision of [Sara Wade](https://www.maths.ed.ac.uk/~swade/index.html).
 My research aims to develop advances in Bayesian deep modelling. 
 Mainly, I focus on efficient inference schemes and appropriate priors' choices for the data-driven design of the model's architecture.
 
