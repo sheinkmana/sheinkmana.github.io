@@ -1,12 +1,14 @@
 ---
 layout: page
 permalink: /teaching/
-title: teaching
+title: more info
 description: List of the courses where I was or am a tutor
 nav: true
 nav_order: 2
 ---
 
+---
+### Teaching 
 - Fundamentals of probability 23/24, King's College London
 - Into to the dynamical systems 22/23, King's College London
 - Fundamentals of probability 22/23, King's College London
