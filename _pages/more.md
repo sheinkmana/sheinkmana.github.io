@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /teaching/
+permalink: /moreinfo/
 title: more info
 description: List of the courses where I was or am a tutor
 nav: true
