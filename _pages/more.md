@@ -8,6 +8,7 @@ nav_order: 2
 ---
 ___
 
+**List of activities**
 - March 2023 - Attended [BayesComp](https://bayescomp2023.com). *Levi, Finland*
 - Dec 2022 - Took part in the Alan Turing [Data study group](https://www.turing.ac.uk/events/data-study-group-december-2022) on Deep learning techniques for noise annoyance prediction. *London, UK*
 - June 2022 - Attended UoE Centre for Statistics annual [conference](https://centreforstatistics.maths.ed.ac.uk/cfs/events/the-cfs-annual-conference/cfsc-2022) and was one of the organisers of its [satellite event](https://centreforstatistics.maths.ed.ac.uk/cfs/events/the-cfs-annual-conference/cfs-phd-student-day-2022) for PhD students. *Edinburgh, UK*
