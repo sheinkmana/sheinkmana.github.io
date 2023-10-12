@@ -1,12 +1,12 @@
 ---
 layout: page
 permalink: /moreinfo/
-title: more info
-description: List of the courses where I was or am a tutor
+title: A bit more info than on the title page
+description: List of activities 
 nav: true
 nav_order: 2
 ---
-### Activity
+
 - March 2023 - Attended [BayesComp](https://bayescomp2023.com). *Levi, Finland*
 - Dec 2022 - Took part in the Alan Turing [Data study group](https://www.turing.ac.uk/events/data-study-group-december-2022) on Deep learning techniques for noise annoyance prediction. *London, UK*
 - June 2022 - Attended UoE Centre for Statistics annual [conference](https://centreforstatistics.maths.ed.ac.uk/cfs/events/the-cfs-annual-conference/cfsc-2022) and was one of the organisers of its [satellite event](https://centreforstatistics.maths.ed.ac.uk/cfs/events/the-cfs-annual-conference/cfs-phd-student-day-2022) for PhD students. *Edinburgh, UK*
@@ -16,7 +16,7 @@ ___
 
 
 ---
-### Tutoring 
+**Tutoring**
 - Fundamentals of probability 23/24, King's College London
 - Into to the dynamical systems 22/23, King's College London
 - Fundamentals of probability 22/23, King's College London
