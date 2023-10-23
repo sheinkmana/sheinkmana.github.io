@@ -9,7 +9,7 @@ nav_order: 2
 ___
 
 **List of activities**
-
+- Planning to take part in [Bayes at CIRM](https://bayesatcirm.github.io). *October 2023, Marseille, France*
 - Attended [BayesComp](https://bayescomp2023.com). *March 2023, Levi, Finland*
 - Took part in the Alan Turing Institute [Data study group](https://www.turing.ac.uk/events/data-study-group-december-2022) on Deep learning techniques for noise annoyance prediction. *Dec 2022, London, UK*
 - Attended UoE Centre for Statistics annual [conference](https://centreforstatistics.maths.ed.ac.uk/cfs/events/the-cfs-annual-conference/cfsc-2022) and was one of the organisers of its [satellite event](https://centreforstatistics.maths.ed.ac.uk/cfs/events/the-cfs-annual-conference/cfs-phd-student-day-2022) for PhD students. *June 2022, Edinburgh, UK*
