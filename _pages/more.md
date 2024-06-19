@@ -9,8 +9,10 @@ nav_order: 2
 ___
 
 **List of activities**
-- Planning to present a poster on [Centre for Statistics Annual Conference](https://centreforstatistics.maths.ed.ac.uk/cfs/events/upcoming-events/cfs-annual-conference-2024). *June 2024, Edinburgh, UK*
-- Planning to give a talk on [Early Career Researches Day](https://centreforstatistics.maths.ed.ac.uk/cfs/events/upcoming-events/ecr-day-2024). *June 2024, Edinburgh, UK*
+- Planning to give a talk on [ISBA World Meeting]([https://events.stat.uconn.edu/BAYSM2024/](https://www.unive.it/web/en/2208/home)). *July 2024, Venice, Italy*
+- Planning to give a talk on [BAYSM](https://events.stat.uconn.edu/BAYSM2024/). *June 2024, Venice, Italy*
+- Presented a poster on [Centre for Statistics Annual Conference](https://centreforstatistics.maths.ed.ac.uk/cfs/events/upcoming-events/cfs-annual-conference-2024). *June 2024, Edinburgh, UK*
+- Gave a talk on [Early Career Researches Day](https://centreforstatistics.maths.ed.ac.uk/cfs/events/upcoming-events/ecr-day-2024). *June 2024, Edinburgh, UK*
 - Attended [Bayes at CIRM](https://bayesatcirm.github.io). *October 2023, Marseille, France*
 - Team member an the ATI [Data Study Group with National Biodiversity Network Trust](https://www.turing.ac.uk/news/publications/data-study-group-final-report-national-biodiversity-network-trust). *May 2023, London, UK*
 - Attended [BayesComp](https://bayescomp2023.com). *March 2023, Levi, Finland*
