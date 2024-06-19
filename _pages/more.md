@@ -9,7 +9,7 @@ nav_order: 2
 ___
 
 **List of activities**
-- Planning to give a talk on [ISBA World Meeting]([https://events.stat.uconn.edu/BAYSM2024/](https://www.unive.it/web/en/2208/home)). *July 2024, Venice, Italy*
+- Planning to give a talk at [ISBA World Meeting](https://www.unive.it/web/en/2208/home). *July 2024, Venice, Italy*
 - Planning to give a talk on [BAYSM](https://events.stat.uconn.edu/BAYSM2024/). *June 2024, Venice, Italy*
 - Presented a poster on [Centre for Statistics Annual Conference](https://centreforstatistics.maths.ed.ac.uk/cfs/events/upcoming-events/cfs-annual-conference-2024). *June 2024, Edinburgh, UK*
 - Gave a talk on [Early Career Researches Day](https://centreforstatistics.maths.ed.ac.uk/cfs/events/upcoming-events/ecr-day-2024). *June 2024, Edinburgh, UK*
