@@ -22,10 +22,6 @@ ___
   
 ___
 
-*I began my PhD in algebraic geometry and non-commutative geometry.  But the PhD path is far from being linear and after the first 1.5 years, I switched to a different topic. Before that transfer, I gave two talks - one on Hopf Algebras at [GLAMs examples seminar](https://www.glams.org/2020-cohort/examples-seminar) and another on Khovanov homologies at the [Knot homologies reading group](https://sites.google.com/site/psafronov/notes/knot-homology). Now I am happily studying **Bayesian statistics and deep learning** whilst the research problem I left without an answer was solved by [Patrick Kinnear](https://www.maths.ed.ac.uk/~s1524448/) and his paper [Skein module dimensions of mapping tori of the 2-torus](https://arxiv.org/abs/2304.07332)* 
-
-___
-
 **Tutoring**
 - Fundamentals of probability 24/25, King's College London
 - Probability and statistics 23/24, King's College London
@@ -35,4 +31,9 @@ ___
 - Honors Algebra 21/22, University of Edinburgh
 - Calculus and Applications 20/21, University of Edinburgh
 - Calculus 17/18, HSE Moscow
+
+___
+
+*I began my PhD in algebraic geometry and non-commutative geometry.  But the PhD path is far from being linear and after the first 1.5 years, I switched to a different topic. Before that transfer, I gave two talks - one on Hopf Algebras at [GLAMs examples seminar](https://www.glams.org/2020-cohort/examples-seminar) and another on Khovanov homologies at the [Knot homologies reading group](https://sites.google.com/site/psafronov/notes/knot-homology). Now I am happily studying **Bayesian statistics and deep learning** whilst the research problem I left without an answer was solved by [Patrick Kinnear](https://www.maths.ed.ac.uk/~s1524448/) and his paper [Skein module dimensions of mapping tori of the 2-torus](https://arxiv.org/abs/2304.07332)* 
+
   
