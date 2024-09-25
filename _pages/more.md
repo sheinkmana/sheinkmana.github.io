@@ -27,6 +27,7 @@ ___
 ___
 
 **Tutoring**
+- Fundamentals of probability 24/25, King's College London
 - Probability and statistics 23/24, King's College London
 - Fundamentals of probability 23/24, King's College London
 - Into to the dynamical systems 22/23, King's College London
