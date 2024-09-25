@@ -9,6 +9,7 @@ nav_order: 2
 ___
 
 **List of activities**
+- Presented a poster on [ELLIS Doctoral Symposium](https://eds2024.github.io). *August 2024, Paris, France*
 - Gave a talk at [ISBA World Meeting](https://www.unive.it/web/en/2208/home). *July 2024, Venice, Italy*
 - Gave a talk on [BAYSM](https://events.stat.uconn.edu/BAYSM2024/). *June 2024, Venice, Italy*
 - Presented a poster on [Centre for Statistics Annual Conference](https://centreforstatistics.maths.ed.ac.uk/cfs/events/upcoming-events/cfs-annual-conference-2024). *June 2024, Edinburgh, UK*
