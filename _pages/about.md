@@ -26,8 +26,9 @@ Mainly, I focus on efficient inference schemes and appropriate priors' choices f
 
 ### Publications
 
-[Variational Bayesian Bow tie Neural Networks with Shrinkage](https://arxiv.org/abs/2411.11132), <u>A. Sheinkman</u>, S. Wade, arXiv:2411.11132, 2024.
+[Variational Bayesian Bow tie Neural Networks with Shrinkage](https://arxiv.org/abs/2411.11132), **A. Sheinkman**, S. Wade, arXiv:2411.11132, 2024.
+Corresponding [code](https://github.com/sheinkmana/V_bowtie_NN).
 
 [Deep learning techniques for noise annoyance detection: results from an intensive workshop at the alan turing institute](https://pubs.aip.org/asa/jasa/article/153/3_supplement/A262/2886025/Deep-learning-techniques-for-noise-annoyance),
-A. Mitchell, E. Brown, R. Deo, Y. Hou, J. Kirton-Wingate, J. Liang,<u>A. Sheinkman</u>, C. Soelistyo, H. Sood, and A. Wongprommoon
+A. Mitchell, E. Brown, R. Deo, Y. Hou, J. Kirton-Wingate, J. Liang, **A. Sheinkman**, C. Soelistyo, H. Sood, and A. Wongprommoon
 The Journal of the Acoustical Society of America, 153(3_supplement): A262-A262, 2023.
