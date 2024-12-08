@@ -24,7 +24,7 @@ Mainly, I focus on efficient inference schemes and appropriate priors' choices f
 
 ---
 
-### Publications
+#### Publications
 
 [Variational Bayesian Bow tie Neural Networks with Shrinkage](https://arxiv.org/abs/2411.11132), **A. Sheinkman**, S. Wade, arXiv:2411.11132, 2024.
 Corresponding [code](https://github.com/sheinkmana/V_bowtie_NN).
