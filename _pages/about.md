@@ -26,7 +26,7 @@ Namely, I study efficient inference schemes with a focus on scalable variational
 #### Publications
 
 [The Architecture and Evaluation of Bayesian Neural Networks](https://arxiv.org/abs/2503.11808), **A. Sheinkman**, S. Wade, arXiv:2503.11808, 2025.
-Corresponding [code]([https://github.com/sheinkmana/V_bowtie_NN](https://github.com/sheinkmana/ArchitectureofBNNs).
+Corresponding [code](https://github.com/sheinkmana/ArchitectureofBNNs).
 
 [Variational Bayesian Bow tie Neural Networks with Shrinkage](https://arxiv.org/abs/2411.11132), **A. Sheinkman**, S. Wade, arXiv:2411.11132, 2024.
 Corresponding [code](https://github.com/sheinkmana/V_bowtie_NN).
