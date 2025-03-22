@@ -70,9 +70,9 @@ github_username: sheinkmana
 gitlab_username: # your GitLab user name
 twitter_username: # your Twitter handle
 mastodon_username: # your mastodon instance+username in the format instance.tld/@username
-linkedin_username: # your LinkedIn user name
+linkedin_username: alisa-sheinkman-713945215
 telegram_username: # your Telegram user name
-scholar_userid: # your Google Scholar ID
+scholar_userid: C-jUAAcAAAAJ
 semanticscholar_id: # your Semantic Scholar ID
 whatsapp_number: # your WhatsApp number (full phone number in international format. Omit any zeroes, brackets, or dashes when adding the phone number in international format.)
 orcid_id: # your ORCID ID
@@ -103,7 +103,7 @@ zotero_username: # your zotero username
 wechat_qr: # filename of your wechat qr-code saved as an image (e.g., wechat-qr.png if saved to assets/img/wechat-qr.png)
 
 contact_note: >
-  That's my email and github.
+  That's my email, github, linkedin and google scholar.
 
 # -----------------------------------------------------------------------------
 # Analytics and search engine verification
