@@ -6,7 +6,7 @@ title: blank # the website title (if blank, full name will be used instead)
 first_name: Alisa
 middle_name: 
 last_name: Sheinkman
-email: a.sheinkman@sms.ed.ac.uk
+email: alisasheik@gmail.com
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
   Alisa Sheinkman's webpage.
 footer_text: >
@@ -46,7 +46,7 @@ rss_icon: false
 # -----------------------------------------------------------------------------
 
 navbar_fixed: true
-footer_fixed: false
+footer_fixed: true
 
 # Dimensions
 max_width: 800px
@@ -102,7 +102,7 @@ zotero_username: # your zotero username
 wechat_qr: # filename of your wechat qr-code saved as an image (e.g., wechat-qr.png if saved to assets/img/wechat-qr.png)
 
 contact_note: >
-  That's my email, github, linkedin and google scholar.
+  That's my email,  google scholar, github, and linkedin.
 
 # -----------------------------------------------------------------------------
 # Analytics and search engine verification
