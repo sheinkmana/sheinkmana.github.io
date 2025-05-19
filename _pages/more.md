@@ -6,9 +6,12 @@ description: A bit more info than on the title page
 nav: true
 nav_order: 2
 ---
-___
+
+---
 
 **List of activities**
+- Gave a talk at [workshop on Advances in post-Bayesian methods](https://postbayes.github.io/workshop2025/). *May 2025, London, UK*
+- **Passed my viva (minor corrections)!** *May 2025, Worldwide*
 - Lead an intro on variational inference at [Probabilistic programming study group @ the Alan Turing Institute](https://github.com/alan-turing-institute/probabilistic-programming-study-group) *March 2025, London, UK*
 - Gave a talk at [CFE-CMStatistics](https://www.cmstatistics.org/CFECMStatistics2024/). *December 2024, London, UK*
 - Presented a poster on [ELLIS Doctoral Symposium](https://eds2024.github.io). *August 2024, Paris, France*
