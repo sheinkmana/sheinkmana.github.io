@@ -17,7 +17,7 @@ selected_papers: false # includes a list of papers marked as "selected={true}"
 social: true  # includes social icons at the bottom of the page
 ---
 
-I am a 4th year PhD student working under the supervision of [Sara Wade](https://sarawade.owlstown.net).
+I am a postgraduate researcher working under the supervision of [Sara Wade](https://sarawade.owlstown.net).
 My research aims to develop advances in Bayesian deep modelling. 
 Namely, I study efficient inference schemes with a focus on scalable variational inference algorithms such as stochastic and black box variational inference; My work addresses the challenge of architecture specification of Bayesian neural networks, Bayesian model choice and model combination in the realms of big data and overparametrized deep models.
 
