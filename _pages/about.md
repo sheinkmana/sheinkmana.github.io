@@ -23,6 +23,10 @@ Namely, I study efficient inference schemes with a focus on scalable variational
 
 ---
 
+**Passed my viva (minor corrections)!** *May 2025, Worldwide*
+
+---
+
 #### Publications
 
 [The Architecture and Evaluation of Bayesian Neural Networks](https://arxiv.org/abs/2503.11808), **A. Sheinkman**, S. Wade, arXiv:2503.11808, 2025.
