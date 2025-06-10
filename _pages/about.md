@@ -29,6 +29,9 @@ Namely, I study efficient inference schemes with a focus on scalable variational
 
 #### Publications
 
+
+[SMRS: advocating a unified reporting standard for surrogate models in the artificial intelligence era](https://arxiv.org/abs/2502.06753), E. Semenova, **A. Sheinkman**, T. J. Hitge, S.M. Hall, J. Cockayne, arXiv:2502.06753, 2025.
+
 [The Architecture and Evaluation of Bayesian Neural Networks](https://arxiv.org/abs/2503.11808), **A. Sheinkman**, S. Wade, arXiv:2503.11808, 2025.
 Corresponding [code](https://github.com/sheinkmana/ArchitectureofBNNs).
 
