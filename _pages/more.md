@@ -10,6 +10,7 @@ nav_order: 2
 ---
 
 **List of activities**
+- Planning to present a poster (and a poster spotlight presentation) on [Representing, calibrating & leveraging prediction uncertainty from statistics to machine learning workshop](https://www.newton.ac.uk/event/rclw03/). *June 2025, Cambridge, UK*
 - Spotlight presentation (finalist) at [London Hopper Colloquium](https://www.ucl.ac.uk/computer-science/events/2025/may/london-hopper-colloquium-2025). *May 2025, London, UK*
 - Gave a talk at [workshop on Advances in post-Bayesian methods](https://postbayes.github.io/workshop2025/). [Video of the talk](https://www.youtube.com/watch?v=5gqAgwNf9es). *May 2025, London, UK*
 - **Passed my viva (minor corrections)!** *May 2025, Worldwide*
