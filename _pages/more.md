@@ -10,10 +10,10 @@ nav_order: 2
 ---
 
 **List of activities**
+-**Officially obtained a of Degree of Doctor of Philosophy.** *July 2025, Worldwide*
 - Presented a poster (and a poster spotlight presentation) on [Accelerating statistical inference and experimental design with machine learning workshop](https://www.newton.ac.uk/event/rclw03/). *June 2025, Cambridge, UK*
 - Spotlight presentation (finalist) at [London Hopper Colloquium](https://www.ucl.ac.uk/computer-science/events/2025/may/london-hopper-colloquium-2025). *May 2025, London, UK*
 - Gave a talk at [workshop on Advances in post-Bayesian methods](https://postbayes.github.io/workshop2025/). [Video of the talk](https://www.youtube.com/watch?v=5gqAgwNf9es). *May 2025, London, UK*
-- **Passed my viva (minor corrections)!** *May 2025, Worldwide*
 - Lead an intro on variational inference at [Probabilistic programming study group @ the Alan Turing Institute](https://github.com/alan-turing-institute/probabilistic-programming-study-group) *March 2025, London, UK*
 - Gave a talk at [CFE-CMStatistics](https://www.cmstatistics.org/CFECMStatistics2024/). *December 2024, London, UK*
 - Presented a poster on [ELLIS Doctoral Symposium](https://eds2024.github.io). *August 2024, Paris, France*
