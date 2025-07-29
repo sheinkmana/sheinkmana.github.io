@@ -2,7 +2,7 @@
 layout: about
 title: about
 permalink: /
-subtitle: Researcher willing to advance ML in the age of big data and ever-expanding models.
+subtitle: Early career researcher.
 
 profile:
   align: right
