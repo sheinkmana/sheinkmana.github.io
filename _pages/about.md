@@ -31,6 +31,8 @@ During my PhD, I was working under the supervision of [Sara Wade](https://sarawa
 **Publications**
 
 
+[Probabilistic inference in Bayesian neural networks](https://era.ed.ac.uk/handle/1842/43738),  **A. Sheinkman**, PhD dissertation, 2025. 
+
 [SMRS: advocating a unified reporting standard for surrogate models in the artificial intelligence era](https://arxiv.org/abs/2502.06753), 
 E. Semenova, **A. Sheinkman**, T. J. Hitge, S.M. Hall, J. Cockayne, arXiv:2502.06753, 2025.
 
