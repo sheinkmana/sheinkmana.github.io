@@ -31,17 +31,17 @@ During my PhD, I was working under the supervision of [Sara Wade](https://sarawa
 **Publications**
 
 
-[Probabilistic inference in Bayesian neural networks](https://era.ed.ac.uk/handle/1842/43738),  **A. Sheinkman**, PhD dissertation, 2025. 
+[Probabilistic inference in Bayesian neural networks](https://era.ed.ac.uk/handle/1842/43738),  **A. S.**, PhD dissertation, 2025. 
 
 [SMRS: advocating a unified reporting standard for surrogate models in the artificial intelligence era](https://arxiv.org/abs/2502.06753), 
-E. Semenova, **A. Sheinkman**, T. J. Hitge, S.M. Hall, J. Cockayne, arXiv:2502.06753, 2025.
+E. Semenova, **A. S.**, T. J. Hitge, S.M. Hall, J. Cockayne, arXiv:2502.06753, 2025.
 
-[Understanding the Trade-offs in Accuracy and Uncertainty Quantification: Architecture and Inference Choices in Bayesian Neural Networks](https://arxiv.org/abs/2503.11808), **A. Sheinkman**, S. Wade, in Proceedings of the ECML PKDD, 2025 (to appear).
+[Understanding the Trade-offs in Accuracy and Uncertainty Quantification: Architecture and Inference Choices in Bayesian Neural Networks](https://arxiv.org/abs/2503.11808), **A. S.**, S. Wade, in Proceedings of the ECML PKDD, 2025 (to appear).
 Corresponding [code](https://github.com/sheinkmana/ArchitectureofBNNs).
 
-[Variational Bayesian Bow tie Neural Networks with Shrinkage](https://arxiv.org/abs/2411.11132), **A. Sheinkman**, S. Wade, arXiv:2411.11132, 2024.
+[Variational Bayesian Bow tie Neural Networks with Shrinkage](https://arxiv.org/abs/2411.11132), **A. S.**, S. Wade, arXiv:2411.11132, 2024.
 Corresponding [code](https://github.com/sheinkmana/V_bowtie_NN).
 
 [Deep learning techniques for noise annoyance detection: results from an intensive workshop at the alan turing institute](https://pubs.aip.org/asa/jasa/article/153/3_supplement/A262/2886025/Deep-learning-techniques-for-noise-annoyance),
-A. Mitchell, E. Brown, R. Deo, Y. Hou, J. Kirton-Wingate, J. Liang, **A. Sheinkman**, C. Soelistyo, H. Sood, and A. Wongprommoon
+A. Mitchell, E. Brown, R. Deo, Y. Hou, J. Kirton-Wingate, J. Liang, **A. S.**, C. Soelistyo, H. Sood, and A. Wongprommoon
 The Journal of the Acoustical Society of America, 153(3_supplement): A262-A262, 2023.
