@@ -34,9 +34,9 @@ During my PhD, I was working under the supervision of [Sara Wade](https://sarawa
 [Probabilistic inference in Bayesian neural networks](https://era.ed.ac.uk/handle/1842/43738),  **A. S.**, PhD dissertation, 2025. 
 
 [SMRS: advocating a unified reporting standard for surrogate models in the artificial intelligence era](https://arxiv.org/abs/2502.06753), 
-E. Semenova, **A. S.**, T. J. Hitge, S.M. Hall, J. Cockayne, arXiv:2502.06753, 2025.
+E. Semenova, **A. S.**, T. J. Hitge, S.M. Hall, J. Cockayne, NeurIPS, 2025 (accepted, to appear).
 
-[Understanding the Trade-offs in Accuracy and Uncertainty Quantification: Architecture and Inference Choices in Bayesian Neural Networks](https://arxiv.org/abs/2503.11808), **A. S.**, S. Wade, in Proceedings of the ECML PKDD, 2025 (to appear).
+[Understanding the Trade-offs in Accuracy and Uncertainty Quantification: Architecture and Inference Choices in Bayesian Neural Networks](https://arxiv.org/abs/2503.11808), **A. S.**, S. Wade, in Proceedings of the ECML PKDD, 2025.
 Corresponding [code](https://github.com/sheinkmana/ArchitectureofBNNs).
 
 [Variational Bayesian Bow tie Neural Networks with Shrinkage](https://arxiv.org/abs/2411.11132), **A. S.**, S. Wade, arXiv:2411.11132, 2024.
