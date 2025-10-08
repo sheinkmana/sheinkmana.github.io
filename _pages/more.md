@@ -10,7 +10,7 @@ nav_order: 2
 ---
 
 **List of activities**
-- *Upcoming:* talk on [ECML PKDD](https://ecmlpkdd.org/2025/). *September 2025, Porto, Portugal*
+- Gave a talk on [ECML PKDD](https://ecmlpkdd.org/2025/). *September 2025, Porto, Portugal*
 - **Officially obtained a Degree of Doctor of Philosophy.** *July 2025, Worldwide*
 - Presented a poster (and a poster spotlight presentation) on [Accelerating statistical inference and experimental design with machine learning workshop](https://www.newton.ac.uk/event/rclw03/). *June 2025, Cambridge, UK*
 - Spotlight presentation (finalist) at [London Hopper Colloquium](https://www.ucl.ac.uk/computer-science/events/2025/may/london-hopper-colloquium-2025). *May 2025, London, UK*
