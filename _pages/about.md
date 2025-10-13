@@ -24,10 +24,6 @@ During my PhD, I was working under the supervision of [Sara Wade](https://sarawa
 
 ---
 
-**Got my PhD degree!** *July 2025, Worldwide*
-
----
-
 **Publications**
 
 
