@@ -10,7 +10,6 @@ on:
       - master
       - main
   workflow_dispatch:
-
 permissions:
   contents: write
 
@@ -33,7 +32,7 @@ jobs:
         pip3 install --upgrade jupyter
         npm install -g mermaid.cli purgecss
         bundle install --jobs 4 --retry 3
-        bundle exec jekyll build --lsi
+        bundle exec jekyll build --trace --lsi
         purgecss -c purgecss.config.js
     - name: Deploy 🚀
       if: github.event_name != 'pull_request'
