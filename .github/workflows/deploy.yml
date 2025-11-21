@@ -10,7 +10,6 @@ on:
       - master
       - main
   workflow_dispatch:
-
 permissions:
   contents: write
 
@@ -27,10 +26,14 @@ jobs:
         ruby-version: '3.2.2'
         bundler-cache: true
     - name: Install and Build 🔧
+      env:
+        JEKYLL_ENV: production
       run: |
         pip3 install --upgrade jupyter
-        npm install -g mermaid.cli 
-        npm install -g purgecss export JEKYLL_ENV=production bundle install --jobs 4 --retry 3 bundle exec jekyll build --lsi purgecss -c purgecss.config.js
+        npm install -g mermaid.cli purgecss
+        bundle install --jobs 4 --retry 3
+        bundle exec jekyll build --trace --lsi
+        purgecss -c purgecss.config.js
     - name: Deploy 🚀
       if: github.event_name != 'pull_request'
       uses: JamesIves/github-pages-deploy-action@v4
