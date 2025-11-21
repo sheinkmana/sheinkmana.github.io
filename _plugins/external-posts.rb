@@ -2,7 +2,6 @@ require 'feedjira'
 require 'httparty'
 require 'jekyll'
 require 'feedjira'
-require 'feedjira/parser'
 
 module ExternalPosts
   class ExternalPostsGenerator < Jekyll::Generator
