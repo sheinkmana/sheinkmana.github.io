@@ -1,7 +1,7 @@
 require 'feedjira'
 require 'httparty'
 require 'jekyll'
-require 'feedjira'
+require 'feedjira/parser'
 
 module ExternalPosts
   class ExternalPostsGenerator < Jekyll::Generator
@@ -31,6 +31,7 @@ module ExternalPosts
                 doc.data['date'] = e.published;
                 doc.data['redirect'] = e.url;
                 site.collections['posts'].docs << doc
+              end
             end
           end
         end
