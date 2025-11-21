@@ -27,11 +27,11 @@ jobs:
         ruby-version: '3.2.2'
         bundler-cache: true
     - name: Install and Build 🔧
+      env:
+        JEKYLL_ENV: production
       run: |
         pip3 install --upgrade jupyter
-        npm install -g mermaid.cli
-        npm install -g purgecss
-        export JEKYLL_ENV=production
+        npm install -g mermaid.cli purgecss
         bundle install --jobs 4 --retry 3
         bundle exec jekyll build --lsi
         purgecss -c purgecss.config.js
