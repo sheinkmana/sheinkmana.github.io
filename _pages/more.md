@@ -10,6 +10,7 @@ nav_order: 2
 ---
 
 **List of activities**
+- Presented a NeurIPS poster on [EurIPS](https://eurips.cc). *December 2025, Copenhagen, Denmark*
 - Gave a talk on [ECML PKDD](https://ecmlpkdd.org/2025/). *September 2025, Porto, Portugal*
 - Presented a poster (and a poster spotlight presentation) on [Accelerating statistical inference and experimental design with machine learning workshop](https://www.newton.ac.uk/event/rclw03/). *June 2025, Cambridge, UK*
 - Spotlight presentation (finalist) at [London Hopper Colloquium](https://www.ucl.ac.uk/computer-science/events/2025/may/london-hopper-colloquium-2025). *May 2025, London, UK*
