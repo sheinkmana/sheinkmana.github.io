@@ -17,8 +17,7 @@ selected_papers: false # includes a list of papers marked as "selected={true}"
 social: true  # includes social icons at the bottom of the page
 ---
 
-I am a recent doctoral graduate advancing probabilistic machine learning and, more
-broadly, artificial intelligence in the age of big data and ever-expanding models. 
+Machine Learning Engineer and Researcher with a PhD in Statistics and strong proficiency in Python, PyTorch, TensorFlow and JAX. Experienced in designing efficient learning schemes and implementing complex neural networks. Passionate about building reliable probabilstic ML systems and bridging the gap between theory and production-ready code. 
 
 During my PhD, I was working under the supervision of [Sara Wade](https://sarawade.owlstown.net) and developed advances in Bayesian deep modelling. Namely, I studied efficient inference schemes with a focus on scalable variational inference algorithms such as stochastic and black box variational inference. My thesis addresses the challenge of architecture specification of Bayesian neural networks, Bayesian model choice and model combination in the realms of big data and overparametrized deep models.
 
