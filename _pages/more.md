@@ -3,13 +3,15 @@ layout: page
 permalink: /moreinfo/
 title: more info
 description: A bit more info than on the title page
-nav: true
+nav: false
 nav_order: 2
 ---
 
 ---
 
 **List of activities**
+
+- Doing [Nebius Academy's AI performance engineering course](https://academy.nebius.com/ai-engineering-il). *March-July 2026, Tel Aviv, Israel*
 - Presented a NeurIPS poster on [EurIPS](https://eurips.cc). *December 2025, Copenhagen, Denmark*
 - Gave a talk on [ECML PKDD](https://ecmlpkdd.org/2025/). *September 2025, Porto, Portugal*
 - Presented a poster (and a poster spotlight presentation) on [Accelerating statistical inference and experimental design with machine learning workshop](https://www.newton.ac.uk/event/rclw03/). *June 2025, Cambridge, UK*

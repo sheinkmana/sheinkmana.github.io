@@ -45,11 +45,15 @@
 
               <!-- About -->
               <li class="nav-item {% if page.permalink == '/' %}active{% endif %}">
-                <a class="nav-link" href="{{ '/' | relative_url }}">{{ about_title }}
+                <a class="nav-link" href="{{ '/#about' | relative_url }}">{{ about_title }}
                   {%- if page.permalink == '/' -%}
                   <span class="sr-only">(current)</span>
                   {%- endif -%}
                 </a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="{{ '/#more' | relative_url }}">more</a>
               </li>
 
                    <!-- Other pages -->

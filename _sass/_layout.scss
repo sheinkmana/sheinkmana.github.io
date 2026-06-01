@@ -27,6 +27,11 @@ body.sticky-bottom-footer {
   max-width: $max-content-width;
 }
 
+#about,
+#more {
+  scroll-margin-top: 76px;
+}
+
 // Profile
 .profile {
   img {
