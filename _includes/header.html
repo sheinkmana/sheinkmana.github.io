@@ -52,10 +52,6 @@
                 </a>
               </li>
 
-              <li class="nav-item">
-                <a class="nav-link" href="{{ '/#more' | relative_url }}">more</a>
-              </li>
-
                    <!-- Other pages -->
               {%- assign sorted_pages = site.pages | sort: "nav_order" -%}
               {%- for p in sorted_pages -%}
@@ -89,12 +85,6 @@
               {%- endif -%}
               {% endfor -%}
 
-            <!-- CV link -->
-                <a class="page-link" href="{{ '/assets/pdf/ASheinkman_CV.pdf' | prepend: site.baseurl | prepend: site.url }}">vitae</a> 
-
-
-                
-                
               {% if site.blog_nav_title %}
               <li class="nav-item {% if page.url contains 'blog' %}active{% endif %}">
                 <a class="nav-link" href="{{ '/blog/' | relative_url }}">{{ site.blog_nav_title }}

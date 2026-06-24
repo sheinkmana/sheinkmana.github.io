@@ -816,6 +816,28 @@ html.transition *:after {
   }
 
   .post-content {
+    figure {
+      width: 100%;
+      margin: 1.5rem 0;
+    }
+
+    img {
+      display: block;
+      width: auto;
+      max-width: 100%;
+      height: auto;
+      margin-right: auto;
+      margin-left: auto;
+    }
+
+    .captioned-image-container,
+    .image-link,
+    .image2-inset,
+    picture {
+      display: block;
+      width: 100%;
+    }
+
     blockquote {
       border-left: 5px solid var(--global-theme-color);
       padding: 8px;

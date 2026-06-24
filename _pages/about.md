@@ -21,6 +21,8 @@ Machine Learning Engineer and Researcher with a PhD in Statistics and strong pro
 
 During my PhD, I was working under the supervision of [Sara Wade](https://sarawade.owlstown.net) and developed advances in Bayesian deep modelling. Namely, I studied efficient inference schemes with a focus on scalable variational inference algorithms such as stochastic and black box variational inference. My thesis addresses the challenge of architecture specification of Bayesian neural networks, Bayesian model choice and model combination in the realms of big data and overparametrized deep models.
 
+[CV]({{ '/assets/pdf/ASheinkman_CV.pdf' | relative_url }}) (pdf).
+
 ---
 
 **Publications**
@@ -42,9 +44,6 @@ A. Mitchell, E. Brown, R. Deo, Y. Hou, J. Kirton-Wingate, J. Liang, **A. S.**, C
 The Journal of the Acoustical Society of America, 153(3_supplement): A262-A262, 2023.
 
 ---
-
-## More info
-{: #more }
 
 **List of activities**
 
