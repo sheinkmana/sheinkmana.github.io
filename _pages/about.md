@@ -17,9 +17,13 @@ selected_papers: false # includes a list of papers marked as "selected={true}"
 social: true  # includes social icons at the bottom of the page
 ---
 
-Machine Learning Engineer and Researcher with a PhD in Statistics and strong proficiency in Python, PyTorch, TensorFlow and JAX. Experienced in designing efficient learning schemes and implementing complex neural networks. Passionate about building reliable probabilstic ML systems and bridging the gap between theory and production-ready code. 
+Machine Learning Engineer and Researcher with a PhD in Statistics and strong proficiency in Python, PyTorch, TensorFlow and JAX. Experienced in designing efficient learning schemes and implementing complex neural networks. Passionate about building reliable probabilstic ML systems and bridging the gap between theory and real-world-ready code. 
 
-During my PhD, I was working under the supervision of [Sara Wade](https://sarawade.owlstown.net) and developed advances in Bayesian deep modelling. Namely, I studied efficient inference schemes with a focus on scalable variational inference algorithms such as stochastic and black box variational inference. My thesis addresses the challenge of architecture specification of Bayesian neural networks, Bayesian model choice and model combination in the realms of big data and overparametrized deep models.
+I hold a Research Associate position at [Imperial College London](https://www.imperial.ac.uk), working on Deep Generative Modelling for Infectious Diseases with supervision of [Liza Semenova](https://www.elizaveta-semenova.com) and [Bob Verity](https://profiles.imperial.ac.uk/r.verity)/
+
+Between finishing my PhD and starting at Imperial, I worked as a Research Scientist at [40folds](https://40folds.com).
+
+During my PhD, I was working under the supervision of [Sara Wade](https://sarawade.owlstown.net) and studied efficient inference schemes with a focus on scalable variational inference algorithms. My thesis addresses the challenge of architecture specification of Bayesian neural networks, Bayesian model choice and model combination in the realms of big data and overparametrized deep models.
 
 [CV]({{ '/assets/pdf/ASheinkman_CV.pdf' | relative_url }}) (pdf).
 
