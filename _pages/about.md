@@ -19,7 +19,7 @@ social: true  # includes social icons at the bottom of the page
 
 Machine Learning Engineer and Researcher with a PhD in Statistics and strong proficiency in Python, PyTorch, TensorFlow and JAX. Experienced in designing efficient learning schemes and implementing complex neural networks. Passionate about building reliable probabilstic ML systems and bridging the gap between theory and real-world-ready code. 
 
-I hold a Research Associate position at [Imperial College London](https://www.imperial.ac.uk), working on Deep Generative Modelling for Infectious Diseases with supervision of [Liza Semenova](https://www.elizaveta-semenova.com) and [Bob Verity](https://profiles.imperial.ac.uk/r.verity)/
+I hold a Research Associate position at [Imperial College London](https://www.imperial.ac.uk), working on Deep Generative Modelling for Infectious Diseases with supervision of [Liza Semenova](https://www.elizaveta-semenova.com).
 
 Between finishing my PhD and starting at Imperial, I worked as a Research Scientist at [40folds](https://40folds.com).
 
