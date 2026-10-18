@@ -50,8 +50,9 @@ The Journal of the Acoustical Society of America, 153(3_supplement): A262-A262, 
 ---
 
 **List of activities**
-
-- Doing [Nebius Academy's AI performance engineering course](https://academy.nebius.com/ai-engineering-il). *March-July 2026, Tel Aviv, Israel*
+- Became a Research Associate in Deep Generative Modelling for Infectious Diseases at [Imperial College London](https://www.imperial.ac.uk). *Oct, 2026*. 
+- Won Awesome Serverless award at [Nebius Serverless AI Builders Challenge](https://nebius.com/blog/posts/serverless-ai-builders-challenge-winners). *July, 2026, Worldwide*
+- Succesfully graduated from [Nebius Academy's AI performance engineering course](https://academy.nebius.com/ai-engineering-il). *March-July 2026, Tel Aviv, Israel*
 - Presented a NeurIPS poster on [EurIPS](https://eurips.cc). *December 2025, Copenhagen, Denmark*
 - Gave a talk on [ECML PKDD](https://ecmlpkdd.org/2025/). *September 2025, Porto, Portugal*
 - Presented a poster (and a poster spotlight presentation) on [Accelerating statistical inference and experimental design with machine learning workshop](https://www.newton.ac.uk/event/rclw03/). *June 2025, Cambridge, UK*
