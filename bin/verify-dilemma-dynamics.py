@@ -70,10 +70,9 @@ for name, expected in manifest["files"].items():
     if actual != expected:
         raise SystemExit(f"Public research checksum mismatch: {name}")
 
-for brand in ("nebius", "nvidia"):
-    logo = source / "brands" / f"{brand}.svg"
-    if not logo.is_file() or "<svg" not in logo.read_text():
-        raise SystemExit(f"Missing technology logo: {brand}")
+banner = source / "brands/nebius-nvidia-hackathon.png"
+if not banner.is_file() or not banner.read_bytes().startswith(b"\x89PNG\r\n\x1a\n"):
+    raise SystemExit("Missing hackathon banner")
 
 for asset in (source / "assets").glob("*.js"):
     script = asset.read_text()
