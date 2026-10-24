@@ -13,7 +13,7 @@ related_posts: false
 
 *Exploring AI strategies, incentives and cooperation.*
 
-Updated 24 October 2026 with both completed temperature studies.
+Updated 24 October 2026 with both completed temperature studies and free browser gameplay.
 
 <p class="mb-4">
   <a class="btn btn-primary btn-lg" href="{{ '/dilemma-dynamics/' | relative_url }}">Open the interactive Dilemma Dynamics demo →</a>
@@ -22,8 +22,20 @@ Updated 24 October 2026 with both completed temperature studies.
 The demo opens **Study replay**: step through recorded Nemotron decisions,
 reveal both players' actions together, and follow their points round by round.
 Switch to **Results** to explore aggregate findings, compare opponents, and
-download the report and public data. Everything in this demo uses saved results;
-viewing it requires no API key and incurs no inference charges.
+download the report and public data. **Dilemma**, **Analysis**, and **Board games**
+also offer free browser play: a ten-round Dilemma demo, Dots & Boxes and
+Tic-tac-toe, with pause/resume, browser saves and replay downloads. No API key or
+inference charges are needed.
+
+### One app, two ways to run
+
+The website and terminal versions share the same interface, free games, lessons,
+analysis, Study replay and Results. For **live NVIDIA Nemotron API calls through
+Nebius Token Factory**, [launch the app locally from the terminal](https://github.com/sheinkmana/dilemma-dynamics#run).
+This website is static: an API key embedded in browser code could be read and
+reused by visitors. The local app keeps your key on its localhost server, so live
+API calls stay local while the website runs free bots and saved recordings.
+Your own live model calls use your Nebius account and can incur charges.
 
 I built Dilemma Dynamics to explore how language-model agents respond to incentives.
 Two completed temperature studies compare NVIDIA Nemotron Nano and Super in a repeated
@@ -125,8 +137,8 @@ and limitations.
 
 ## Extra: recreational board games
 
-The full local app also offers **Dots & Boxes** and **Tic-tac-toe** as recreational
-extras for exploring tactics, search and visible-move play. These games sit outside
-the 3,552-episode cooperation evaluation. The public demo focuses on the dilemma
-study's recordings and results; the [repository setup guide](https://github.com/sheinkmana/dilemma-dynamics#run)
-explains how to run the full local app.
+Both versions offer **Dots & Boxes** and **Tic-tac-toe** as recreational extras
+for exploring tactics, search and visible-move play. These games sit outside the
+3,552-episode cooperation evaluation. [Play free browser games]({{ '/dilemma-dynamics/#recreational' | relative_url }})
+or follow the [repository setup guide](https://github.com/sheinkmana/dilemma-dynamics#run)
+for live model play in the local app.

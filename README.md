@@ -8,14 +8,20 @@
 Both completed temperature studies and the combined report are included. Replay
 and Results default to temperature zero and allow selecting temperature one.
 The native post is `_posts/2026-10-23-dilemma-dynamics.md`. The demo opens Study replay
-and exposes only replay and Results; it needs no API server, key, or inference.
+and includes Dilemma, Analysis, Study replay, Results and Board games. Free
+browser play, saved history, pause/resume and replay downloads need no API server,
+key or inference. Both app versions share the same interface and free features.
+Live NVIDIA Nemotron calls through Nebius require launching locally from the
+terminal: a paid API key embedded in this static website would be public, while
+the local server can keep it out of browser code. The app and post explain this
+split and link the terminal setup instructions.
 
 The main project studies cooperation and incentives in the repeated Prisoner's
 Dilemma, where private simultaneous choices can produce mutual gains. The full
-local app also has a separate recreational side project: Dots & Boxes and
+website and local app also have a separate recreational side project: Dots & Boxes and
 Tic-tac-toe explore competitive tactics and search on a fully visible board,
 with a fixed box total or opposing win/draw/loss objectives. Those games are
-outside the published 3,552-episode dilemma evaluation across temperatures 1 and 0 and this hosted demo.
+outside the published 3,552-episode dilemma evaluation across temperatures 1 and 0.
 
 To update it, in the Dilemma Dynamics source checkout run `npm ci` and
 `npm run build:public`, then replace this site's `dilemma-dynamics/` contents with
