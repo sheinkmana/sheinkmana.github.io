@@ -245,7 +245,8 @@ sass:
 # -----------------------------------------------------------------------------
 
 jekyll-minifier:
-  exclude: ['robots.txt']
+  # Vite already minifies this app; preserve its bundle and public data checksums.
+  exclude: ['robots.txt', 'dilemma-dynamics/**']
   uglifier_args:
     harmony: true
 
