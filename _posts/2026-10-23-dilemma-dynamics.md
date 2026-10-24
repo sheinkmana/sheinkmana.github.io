@@ -32,26 +32,6 @@ Mutual cooperation earns each player three points; unilateral defection earns
 five for the defector and zero for the cooperator; mutual defection earns one each.
 The objective is each player's own cumulative points.
 
-## A cooperation study and a recreational side project
-
-Dilemma Dynamics' main project examines cooperation and incentives in the
-repeated Prisoner's Dilemma. The full local app also contains a separate
-recreational side project with Dots & Boxes and Tic-tac-toe, exploring tactical
-play, search and decision inspection. The public demo here includes saved
-dilemma episodes and Results only.
-
-| Game | Choices and incentives |
-|:-----|:-----------------------|
-| Repeated Prisoner's Dilemma | Private simultaneous choices each round. Mutual cooperation earns 3 each; mutual defection earns 1 each. Both can gain together, while each faces an immediate temptation to defect. |
-| Dots & Boxes | Visible sequential moves, with another move after a capture. At completion the number of boxes is fixed: one player's extra box is one fewer for the opponent. |
-| Tic-tac-toe | Visible alternating moves with opposing win/draw/loss objectives. One player's win is the other's loss; perfect play draws. |
-
-A player may deliberately give up boxes to win more later. That is a competitive
-tactic within a fixed total, rather than a way to improve both final scores.
-In the repeated dilemma, future responses can instead make cooperation valuable
-to both players. The published 3,552 episodes across both temperatures concern the dilemma;
-board-game matches and solver checks answer different questions.
-
 ## Does a draft help?
 
 The study compares two procedures. **Direct** makes one thinking-off action
@@ -67,8 +47,11 @@ model dyads spanning all ten model/procedure pairings. That is **3,552 episodes*
 in total, with matched IDs, episode order, stopping lengths, labels and seats.
 The studies ran on 22 October (temperature 1) and 23 October (temperature 0).
 
-In the committed-opponent benchmark, lower loss means fewer points left on
-the table relative to the exact reference policy for that condition.
+The benchmark measures the gap to the best achievable payoff against each
+disclosed opponent policy. Oracle loss records the expected own payoff forgone
+by a chosen action, assuming optimal play thereafter. Episode scores sum these
+gaps and normalise for the horizon; a smaller value means less achievable payoff
+left on the table. Cooperation is reported separately in autonomous play.
 
 | Model | Temperature | Direct mean loss | Draft mean loss | Draft − Direct | Approx. 95% interval |
 |:------|------------:|-----------------:|----------------:|---------------:|:---------------------|
@@ -139,3 +122,11 @@ and limitations.
 - [Browse the public data and reproduction notes]({{ '/dilemma-dynamics/research/README.md' | relative_url }})
 
 [Explore Dilemma Dynamics →]({{ '/dilemma-dynamics/' | relative_url }})
+
+## Extra: recreational board games
+
+The full local app also offers **Dots & Boxes** and **Tic-tac-toe** as recreational
+extras for exploring tactics, search and visible-move play. These games sit outside
+the 3,552-episode cooperation evaluation. The public demo focuses on the dilemma
+study's recordings and results; the [repository setup guide](https://github.com/sheinkmana/dilemma-dynamics#run)
+explains how to run the full local app.
