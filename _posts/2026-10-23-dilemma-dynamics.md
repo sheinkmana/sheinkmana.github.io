@@ -33,10 +33,20 @@ private draft reduced average benchmark decision loss by **16.8–37.5%** across
 two models and two temperatures. The same procedure increased loss against
 Tit-for-Tat and produced less cooperation in autonomous self-play.
 
+**Nebius Token Factory** hosted NVIDIA Nemotron Nano and Super for the evaluation.
+The website offers free browser play, saved games and replay exports without
+model requests. Live Nemotron play uses Token Factory through the
+[locally launched app](https://github.com/sheinkmana/dilemma-dynamics#run-locally),
+with a key held by the localhost server and calls explicitly started on your account.
+
 <p class="mb-4">
   <a class="btn btn-primary btn-lg" href="{{ '/dilemma-dynamics/#play' | relative_url }}">Play &amp; understand →</a>
   <a class="btn btn-outline-primary" href="{{ '/dilemma-dynamics/#results' | relative_url }}">Explore the results →</a>
 </p>
+
+**Try this route:** play a round, inspect its payoff analysis, watch a labelled
+saved Nemotron interaction, then explore **Results**. Expand **Study replay** to
+connect the charts to individual choices.
 
 ## A game where another encounter matters
 
@@ -148,7 +158,3 @@ outcome.
 Tic-tac-toe and Dots & Boxes. They are mathematical games on discrete grids or
 lattices, with perfect information and visible sequential moves; their rules and
 tactical ideas are explained in that area.
-
-The website supports free browser play, saved games and replay exports. Live
-Nemotron play is available by [launching the same app locally](https://github.com/sheinkmana/dilemma-dynamics#run-locally),
-with a key held by the localhost server and calls explicitly started on your account.
