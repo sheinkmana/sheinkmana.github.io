@@ -13,9 +13,22 @@ related_posts: false
 
 *Exploring AI strategies, incentives and cooperation.*
 
-Recognising a profitable action and sustaining a cooperative relationship are
-distinct capabilities. **Dilemma Dynamics** makes that distinction visible in
-**7,104 repeated-game episodes** with NVIDIA Nemotron Nano and Super. A short
+AI agents may interact repeatedly with people or other agents while pursuing
+their own objectives. Their choices can influence whether others cooperate,
+retaliate or rebuild a productive relationship. Understanding how individual
+decision quality relates to cooperation can help researchers and developers
+evaluate agents that interact over time.
+
+Repeated Prisoner's Dilemma makes this relationship concrete: immediate rewards
+compete with future consequences. Dilemma Dynamics combines exact payoff
+comparisons against disclosed opponent policies with autonomous interactions to
+examine how drafting changes decisions and how cooperation develops, breaks down
+and recovers.
+
+Researchers and agent developers can inspect responses to incentives; students
+can explore the same ideas through play, recordings and mathematical explanations.
+
+In **7,104 repeated-game episodes** with NVIDIA Nemotron Nano and Super, a short
 private draft reduced average benchmark decision loss by **16.8–37.5%** across
 two models and two temperatures. The same procedure increased loss against
 Tit-for-Tat and produced less cooperation in autonomous self-play.
