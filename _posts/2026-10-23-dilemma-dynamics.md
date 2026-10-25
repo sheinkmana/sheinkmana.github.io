@@ -62,6 +62,26 @@ a separate thinking-off action request of up to 128 tokens using that draft.
 Both run at **temperatures 0 and 1**, with matched schedules and top-p 1. The
 comparison measures this complete two-stage procedure.
 
+### What the models were told
+
+**Every decision prompt explicitly included the full numerical payoff table.**
+The system instruction stated:
+
+> Maximise your own expected cumulative points until game-rule termination; the objective is not score difference.
+
+The user message supplied the current round, both cumulative scores, the complete
+revealed action/payoff history, and the two legal actions. The instructions gave
+either the announced total and remaining rounds or the continuation probability
+with no announced final round. Models chose neutral **X/Y labels**; both
+assignments of those labels to the numerical payoff table were tested.
+
+Benchmark players were told the opponent's complete deterministic rule;
+autonomous players were told that the opponent policy was unspecified. Current
+choices stayed private until joint reveal. The models had no tools or
+communication and received no analytical best-response solution or analyst
+feedback. Draft used the same game information and objective; only that decision's
+private draft was added to its separate action request.
+
 The **6,144 benchmark episodes** use four disclosed opponent rules: Always
 Cooperate, Always Defect, Tit-for-Tat and Grim. Exact dynamic programming finds
 the best achievable expected own payoff for each choice. **Decision loss** is
