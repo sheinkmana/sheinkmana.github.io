@@ -45,18 +45,26 @@ for page in (destination / "dilemma-dynamics/index.html", post):
         if not target.is_file():
             raise SystemExit(f"Broken demo URL: {url}")
 
-for directory in ("research", "research/temperature-zero"):
-    episodes = json.loads((source / directory / "episodes.json").read_text())
-    if len(episodes) != 1776 or any(r["status"] != "completed" for r in episodes):
-        raise SystemExit(f"Expected 1,776 completed episodes: {directory}")
-one = json.loads((source / "research/plan.json").read_text())
-zero = json.loads((source / "research/temperature-zero/plan.json").read_text())
-if (
-    one["episodes"] != zero["episodes"]
-    or one["procedure"]["temperature"] != 1
-    or zero["procedure"]["temperature"] != 0
-):
-    raise SystemExit("Temperature schedules or settings differ")
+episodes = []
+for temperature, directory in ((0, "research/temperature-zero"), (1, "research/temperature-one")):
+    rows = json.loads((source / directory / "episodes.json").read_text())
+    if len(rows) != 3552 or any(r["status"] != "completed" or r["temperature"] != temperature for r in rows):
+        raise SystemExit(f"Expected 3,552 final episodes at temperature {temperature}")
+    episodes.extend(rows)
+if len({e["id"] for e in episodes}) != 7104:
+    raise SystemExit("Final observation IDs are not unique")
+by_match = {}
+for e in episodes:
+    by_match.setdefault(e["matchedId"], {})[e["temperature"]] = e
+if len(by_match) != 3552:
+    raise SystemExit("Wrong paired environment count")
+for pair in by_match.values():
+    if set(pair) != {0, 1} or any(pair[0][k] != pair[1][k] for k in ("cell", "block", "mapping", "players", "horizon", "rounds", "environmentSeed")):
+        raise SystemExit("Temperature environments differ")
+summary = json.loads((source / "research/summary.json").read_text())
+review = json.loads((source / "research/publication-review.json").read_text())
+if summary["completed"] != 7104 or not summary["complete"] or not review["ready"] or review["evidenceHead"] != summary["evidenceHead"]:
+    raise SystemExit("Final completion/release identity differs")
 manifest = json.loads((source / "research/manifest.json").read_text())
 research_files = {
     p.relative_to(source / "research").as_posix()
@@ -80,5 +88,5 @@ for asset in (source / "assets").glob("*.js"):
         raise SystemExit(f"Local server controls found in {asset.name}")
 
 print(
-    f"Dilemma Dynamics verified: {len(files)} files copied byte-for-byte; both temperatures (3,552 episodes), post and asset links verified."
+    f"Dilemma Dynamics verified: {len(files)} files copied byte-for-byte; both final temperatures (7,104 episodes), post and asset links verified."
 )

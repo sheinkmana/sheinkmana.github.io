@@ -5,7 +5,7 @@
 *Exploring AI strategies, incentives and cooperation.*
 
 `dilemma-dynamics/` is the generated static application, published at `/dilemma-dynamics/`.
-Both completed temperature studies and the combined report are included. Replay
+The sole completed 7,104-episode joint-temperature final evaluation and report are included. Replay
 and Results default to temperature zero and allow selecting temperature one.
 The native post is `_posts/2026-10-23-dilemma-dynamics.md`. The demo opens Study replay
 and includes Dilemma, Analysis, Study replay, Results and Board games. Free
@@ -21,7 +21,7 @@ Dilemma, where private simultaneous choices can produce mutual gains. The full
 website and local app also have a separate recreational side project: Dots & Boxes and
 Tic-tac-toe explore competitive tactics and search on a fully visible board,
 with a fixed box total or opposing win/draw/loss objectives. Those games are
-outside the published 3,552-episode dilemma evaluation across temperatures 1 and 0.
+outside the final 7,104-episode dilemma evaluation across temperatures 0 and 1.
 
 To update it, in the Dilemma Dynamics source checkout run `npm ci` and
 `npm run build:public`, then replace this site's `dilemma-dynamics/` contents with

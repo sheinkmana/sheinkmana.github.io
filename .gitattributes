@@ -1,0 +1,3 @@
+
+dilemma-dynamics/research/*.csv -text whitespace=cr-at-eol
+dilemma-dynamics/assets/*.js -text whitespace=-blank-at-eol

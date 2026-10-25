@@ -1,10 +1,10 @@
 ---
 layout: post
-title: "Dilemma Dynamics: replaying Nemotron's cooperation decisions"
+title: "Dilemma Dynamics: when better decisions fail to sustain cooperation"
 date: 2026-10-23
-last_modified_at: 2026-10-24
+last_modified_at: 2026-10-25
 author: Alisa Sheinkman
-description: "Exploring AI strategies, incentives and cooperation. Explore recorded Nemotron play and 3,552 cooperation-study episodes across temperatures 1 and 0, with no API key or inference charges."
+description: "A completed 7,104-episode Nemotron evaluation: drafting improves average payoff decisions, yet weakens cooperation in autonomous self-play. Explore both temperatures, replay actions and reproduce the results."
 tags: game-theory llm nemotron
 categories: research
 permalink: /blog/2026/dilemma-dynamics/
@@ -13,132 +13,155 @@ related_posts: false
 
 *Exploring AI strategies, incentives and cooperation.*
 
-Updated 24 October 2026 with both completed temperature studies and free browser gameplay.
+A model can become better at exploiting a predictable opponent while becoming
+worse at sustaining reciprocity. That tension is the central result of **Dilemma
+Dynamics**, an interactive laboratory for AI decision-making in repeated games.
+The final evaluation completed on **25 October 2026**. All **7,104 episodes** are
+available to replay, with exact scores and a reproducible public analysis.
 
 <p class="mb-4">
-  <a class="btn btn-primary btn-lg" href="{{ '/dilemma-dynamics/' | relative_url }}">Open the interactive Dilemma Dynamics demo →</a>
+  <a class="btn btn-primary btn-lg" href="{{ '/dilemma-dynamics/#results' | relative_url }}">Explore the final results →</a>
+  <a class="btn btn-outline-primary" href="{{ '/dilemma-dynamics/' | relative_url }}">Replay the decisions →</a>
 </p>
 
-The demo opens **Study replay**: step through recorded Nemotron decisions,
-reveal both players' actions together, and follow their points round by round.
-Switch to **Results** to explore aggregate findings, compare opponents, and
-download the report and public data. **Dilemma**, **Analysis**, and **Board games**
-also offer free browser play: a ten-round Dilemma demo, Dots & Boxes and
-Tic-tac-toe, with pause/resume, browser saves and replay downloads. No API key or
-inference charges are needed.
+## The experiment
 
-### One app, two ways to run
+In a Prisoner's Dilemma, mutual cooperation earns three points each. Defection
+against cooperation earns five for the defector and zero for the cooperator;
+mutual defection earns one each. Players maximise their own cumulative points.
+Another encounter can make cooperation valuable, because today's choice changes
+how a responsive opponent behaves tomorrow.
 
-The website and terminal versions share the same interface, free games, lessons,
-analysis, Study replay and Results. For **live NVIDIA Nemotron API calls through
-Nebius Token Factory**, [launch the app locally from the terminal](https://github.com/sheinkmana/dilemma-dynamics#run).
-This website is static: an API key embedded in browser code could be read and
-reused by visitors. The local app keeps your key on its localhost server, so live
-API calls stay local while the website runs free bots and saved recordings.
-Your own live model calls use your Nebius account and can incur charges.
+The experiment compares NVIDIA Nemotron Nano and Super under two procedures.
+**Direct** makes one thinking-off action request. **Draft** first generates a
+thinking-on draft capped at 1,024 tokens, then makes a separate thinking-off
+action request capped at 128 tokens and conditioned on that draft. Both run at
+**temperatures 0 and 1**, with top-p 1. Draft adds compute, an extra request and
+conditioning together; its effects concern that complete bounded procedure.
 
-I built Dilemma Dynamics to explore how language-model agents respond to incentives.
-Two completed temperature studies compare NVIDIA Nemotron Nano and Super in a repeated
-Prisoner's Dilemma. Each round offers two actions: cooperate or defect.
-Mutual cooperation earns each player three points; unilateral defection earns
-five for the defector and zero for the cooperator; mutual defection earns one each.
-The objective is each player's own cumulative points.
+Both temperatures were interleaved in one campaign on 24–25 October, with **48
+matched environment blocks** and **3,552 episodes per temperature**. The benchmark
+contains 6,144 episodes against disclosed Always Cooperate, Always Defect,
+Tit-for-Tat and Grim policies. Another 960 autonomous dyads cover all ten
+model/procedure pairings, including self-play. Four balanced strata vary the
+neutral X/Y action mapping and display seat. A frozen rule selected the block
+count from engineering cost and latency before scientific outcomes.
 
-## Does a draft help?
+## Drafting improves the average, with a consistent opponent reversal
 
-The study compares two procedures. **Direct** makes one thinking-off action
-request. **Draft** first makes a bounded thinking-on draft request, then a
-separate thinking-off action request conditioned on that draft. Both use
-the selected study temperature, 1 or 0, with top-p 1. Direct allows 128 output
-tokens; Draft allows 1,024 for the draft and 128 for the action. This comparison includes extra compute and an extra request;
-it does not isolate the effect of reasoning at equal cost.
+Against a disclosed rule, exact dynamic programming identifies the best
+achievable expected own payoff. **Decision loss** measures the expected payoff
+given up by each action, assuming optimal play afterward, and normalises for the
+horizon. Lower loss is better. Cooperation has a separate interpretation: it can
+preserve reciprocity, but sacrifices points against a partner who always cooperates.
 
-Each temperature completed the same **24-block / 1,776-episode schedule**: 1,536
-episodes against four disclosed, committed opponent policies and 240 autonomous
-model dyads spanning all ten model/procedure pairings. That is **3,552 episodes**
-in total, with matched IDs, episode order, stopping lengths, labels and seats.
-The studies ran on 22 October (temperature 1) and 23 October (temperature 0).
+| Model | Temperature | Direct mean loss | Draft mean loss | Draft − Direct | Approx. 98.75% interval |
+|:------|------------:|-----------------:|----------------:|---------------:|:-----------------------|
+| Nano | 0 | 0.6462 | 0.5374 | −0.1088 | [−0.1640, −0.0577] |
+| Super | 0 | 0.4616 | 0.3720 | −0.0896 | [−0.1212, −0.0591] |
+| Nano | 1 | 0.6541 | 0.4861 | −0.1680 | [−0.2172, −0.1209] |
+| Super | 1 | 0.5988 | 0.3741 | −0.2246 | [−0.2795, −0.1742] |
 
-The benchmark measures the gap to the best achievable payoff against each
-disclosed opponent policy. Oracle loss records the expected own payoff forgone
-by a chosen action, assuming optimal play thereafter. Episode scores sum these
-gaps and normalise for the horizon; a smaller value means less achievable payoff
-left on the table. Cooperation is reported separately in autonomous play.
+Each arm/temperature mean has 768 benchmark episodes. All four planned intervals
+lie below zero. They use 50,000 stratified whole-block bootstrap draws and
+98.75% marginal intervals for an approximate four-comparison Bonferroni treatment;
+coverage is not guaranteed. Relative loss reductions range from 16.8% to 37.5%.
 
-| Model | Temperature | Direct mean loss | Draft mean loss | Draft − Direct | Approx. 95% interval |
-|:------|------------:|-----------------:|----------------:|---------------:|:---------------------|
-| Nemotron Nano | 1 | 0.6889 | 0.4942 | −0.1947 | [−0.3077, −0.0983] |
-| Nemotron Super | 1 | 0.6150 | 0.3779 | −0.2371 | [−0.3095, −0.1735] |
-| Nemotron Nano | 0 | 0.7161 | 0.5616 | −0.1545 | [−0.2230, −0.0935] |
-| Nemotron Super | 0 | 0.4718 | 0.3763 | −0.0956 | [−0.1280, −0.0635] |
+The opponent breakdown changes the story. **Drafting increases average loss
+against Tit-for-Tat in all four comparisons**, with effects from +0.1717 to
++0.3225. It improves all four means against Always Cooperate and Grim. Much of
+the gain comes from recognising simple exploitation opportunities. Against TFT,
+errors remain in regimes that reward alternation and in regimes that reward
+sustained cooperation.
 
-Drafting lowered average benchmark loss for both models at both temperatures,
-but increased average loss against Tit-for-Tat. Lowering temperature improved
-Super Direct while Super Draft was nearly unchanged. Super's drafting advantage
-therefore narrowed: the matched change in Draft-minus-Direct was +0.1415
-(approximate 95% interval [+0.0840, +0.2066]). Nano's change was +0.0402
-[−0.0256, +0.1142], uncertain under this interval.
+## Better benchmark performance does not ensure cooperative interaction
 
-These intervals resample matched whole blocks within four presentation strata,
-with 20,000 bootstrap draws. Only six blocks per stratum are available; coverage
-and power are not established. This post-viewing sensitivity analysis has no
-multiplicity correction. Different execution dates, backend windows and recovery
-policies also differed, so changes cannot be attributed solely to temperature.
-Temperature zero does not guarantee deterministic hosted inference.
+Every autonomous pairing has 48 dyads and 376 realised rounds per temperature.
+Across pairings, mutual cooperation occurs in **330/3,760 rounds (8.8%) at zero**
+and **353/3,760 (9.4%) at one**. These rounds share histories and are statistically
+dependent. Changing both self-play agents from Direct to Draft lowers mutual
+cooperation and joint-return point estimates for each model at each temperature.
 
-In autonomous play, mutual cooperation occurred in 189/2,060 rounds (9.2%) at
-temperature 1 and 244/2,060 (11.8%) at 0. Dependent rounds are not independent
-trials. These findings describe the tested schedules and procedures, rather than
-a general model ranking or a universal preferred temperature.
+Super at zero gives the clearest example. Direct self-play has **124/376 CC
+rounds**, whereas Draft has **3/376**. Mean normalised joint return falls from
+3.2063 to 1.8667; the paired difference is −1.3396, with exploratory nominal 95%
+interval [−1.8375, −0.9042]. Direct never starts with mutual cooperation but later
+returns to it in 82/218 eligible transitions. Draft never returns to CC in 325
+opportunities. The initial choice and the capacity to repair a relationship are
+different behaviours.
 
-## Try the recordings
+## Temperature, labels and planning expose remaining weaknesses
 
-1. [Open Study replay]({{ '/dilemma-dynamics/' | relative_url }}). The starting example is
-   Nano Direct against Tit-for-Tat, with ten announced rounds in block 1 at temperature 0. Use the temperature selector to load the
-   matched temperature-1 study. The starting condition was
-   chosen by study metadata rather than its outcome.
-2. Reveal a round and inspect both choices and their payoffs. Compare the matched
-   Direct and Draft procedures, or choose another condition, pairing, or block.
-3. [Open Results]({{ '/dilemma-dynamics/#results' | relative_url }}) to inspect
-   both temperatures, matched changes, all ten autonomous pairings and recorded usage estimates.
+The six planned secondary temperature comparisons have nominal 95% intervals
+without multiplicity correction. Super Direct improves at zero, Super Draft
+changes little, Nano Draft worsens, and Nano Direct changes little. Both models'
+drafting advantages narrow at zero. There is no uniform preferred temperature
+across the procedures.
 
-The replay contains published actions, not reconstructed private drafts or
-beliefs. One recording illustrates play; it cannot estimate a procedure's effect.
+Two exploratory diagnostics are especially revealing:
 
-## Scope and reproducibility
+- **Presentation sensitivity:** at zero, Nano's drafting effect reverses sign
+  between X=cooperate and X=defect in both seats. Different stopping draws also
+  differ across strata, so a fully crossed seed/mapping experiment would be
+  needed to isolate the label effect.
+- **Limited sustained planning:** against the committed TFT/Grim rules with ten
+  announced rounds, nine C moves followed by D is optimal and earns 32 points.
+  Only one of 768 episodes follows that path. Super Draft often plays the useful
+  two-round TFT endgame while losing payoff earlier.
 
-Both completed studies followed inspection of interrupted predecessor outcomes.
-The temperature-1 predecessor stopped after 339 episodes on HTTP 502. The first
-temperature-0 attempt stopped after 62 completed episodes on HTTP 529; a separately
-identified full recovery then completed the matched schedule. Interrupted and
-engineering observations are excluded. The findings remain **descriptive**,
-not a fresh confirmatory preregistration. Neither successful final run needed
-retries or recorded protocol failures.
+These patterns motivate hypotheses about shallow contingent planning, defensive
+play that blocks repair, presentation habits, and interactions between sampling
+and truncation. They remain hypotheses. Future tests could vary planning depth,
+introduce controlled forgiving partners, cross every seed with every mapping,
+and randomise draft caps while holding compute budgets comparable. The final
+report develops these proposals alongside the related literature and Rasmusen's
+repeated-game foundations.
 
-Each completed final run used 17,124 successful requests. Usage-priced final
-inference estimates were $4.9278 at temperature 1 and $4.4791 at 0, excluding
-engineering and failed predecessors. These are estimates, not provider invoices
-or benchmark-only cost-effectiveness measurements. Viewing this site is free
-and sends no inference requests.
+## Infrastructure, recovery and reproducibility
 
-The public package supports reproduction of scores and estimates from revealed
-actions. It cannot independently authenticate provider identity, raw request
-history, or billing. The report explains the design, amendments, uncertainty,
-and limitations.
+The local CPU coordinator used remote Nebius Token Factory inference, native
+Inspect AI samples/model events/scorers, and local MLflow Skinny tracking in
+SQLite. Both integrations were used during execution. The canonical ledger
+preserves requests, sealed choices, joint reveals, accounting and source hashes.
+A provider-overload interruption at 3,406 episodes led to a separately approved
+bounded transport amendment; all completed observations and the original deadline
+were retained. The scientific stage finished in 16.16 hours, including recovery.
 
-- [Read the report (PDF)]({{ '/dilemma-dynamics/research/paper/report.pdf' | relative_url }})
-- [Read the methods and amendments]({{ '/dilemma-dynamics/research/protocol.md' | relative_url }})
-- [Download temperature-1 episode actions (JSON)]({{ '/dilemma-dynamics/research/episodes.json' | relative_url }})
-- [Download temperature-0 episode actions (JSON)]({{ '/dilemma-dynamics/research/temperature-zero/episodes.json' | relative_url }})
-- [Download matched temperature changes (CSV)]({{ '/dilemma-dynamics/research/temperature-comparison.csv' | relative_url }})
-- [Browse the public data and reproduction notes]({{ '/dilemma-dynamics/research/README.md' | relative_url }})
+There were 62,832 successful requests plus 20 additional transmissions. Recorded
+final usage is estimated at **\$17.1520**, with **\$0.6349** for engineering and
+**\$0.32479584** still retained as uncertain maximum billing exposure. These are
+usage estimates and exposure bounds, not provider invoices. Publication with
+that uncertainty disclosed was explicitly approved under the existing additional
+\$40 cap; no reservation was cleared. Draft costs approximately 10–12 times Direct
+within the same model across both tracks, and 25–56% of successful drafts reach
+their token cap.
 
-[Explore Dilemma Dynamics →]({{ '/dilemma-dynamics/' | relative_url }})
+This is the sole public final evaluation. Earlier outcomes informed the design
+but are excluded. The package reproduces scores, planned comparisons and
+exploratory diagnostics from saved actions, without further inference. Public
+hashes check integrity; privately retained native logs support execution review.
+Hosted responses are not guaranteed byte-identical, including at temperature zero.
 
-## Extra: recreational board games
+- [Read the report and mathematical notes (PDF)]({{ '/dilemma-dynamics/research/paper/report.pdf' | relative_url }})
+- [Read conclusions, methods and amendments]({{ '/dilemma-dynamics/FINAL_EVALUATION.md' | relative_url }})
+- [Download temperature-0 actions]({{ '/dilemma-dynamics/research/temperature-zero/episodes.json' | relative_url }})
+- [Download temperature-1 actions]({{ '/dilemma-dynamics/research/temperature-one/episodes.json' | relative_url }})
+- [Download all planned contrasts (CSV)]({{ '/dilemma-dynamics/research/contrasts.csv' | relative_url }})
+- [Download exploratory diagnostics (JSON)]({{ '/dilemma-dynamics/research/diagnostics.json' | relative_url }})
+- [Inspect the publication/accounting review]({{ '/dilemma-dynamics/research/publication-review.json' | relative_url }})
+- [Browse source and offline reproduction instructions](https://github.com/sheinkmana/dilemma-dynamics)
 
-Both versions offer **Dots & Boxes** and **Tic-tac-toe** as recreational extras
-for exploring tactics, search and visible-move play. These games sit outside the
-3,552-episode cooperation evaluation. [Play free browser games]({{ '/dilemma-dynamics/#recreational' | relative_url }})
-or follow the [repository setup guide](https://github.com/sheinkmana/dilemma-dynamics#run)
-for live model play in the local app.
+## Explore the app
+
+Start with [Results]({{ '/dilemma-dynamics/#results' | relative_url }}) for the full
+comparison, or [Study replay]({{ '/dilemma-dynamics/' | relative_url }}) to reveal
+both players' choices together. Choose either temperature, all 48 blocks, any
+benchmark condition or autonomous pairing. The initial example is chosen by
+metadata, not outcome.
+
+**Dilemma**, **Analysis** and **Board games** offer free browser play, lessons,
+pause/resume, saved games and replay downloads. Tic-tac-toe and Dots & Boxes are
+recreational extras outside this cooperation evaluation. The website sends no
+inference requests. For live Nemotron play through Nebius, [launch the same app
+locally](https://github.com/sheinkmana/dilemma-dynamics#run-locally); your key stays
+on its localhost server and your model calls use your own account.
