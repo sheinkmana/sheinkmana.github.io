@@ -11,7 +11,7 @@ permalink: /blog/2026/dilemma-dynamics/
 related_posts: false
 ---
 
-*Exploring AI strategies, incentives and cooperation.*
+*Exploring AI strategies, incentives and cooperation.  An interactive game laboratory studying NVIDIA Nemotron's choices. Submission to [Nebius x NVIDIA Global AI Hackathon (Best Apps and Agents Track)](https://nebiusglobalaihackathon.devpost.com)*
 
 AI agents may interact repeatedly with people or other agents while pursuing
 their own objectives. Their choices can influence whether others cooperate,
@@ -31,7 +31,7 @@ can explore the same ideas through play, recordings and mathematical explanation
 In **7,104 repeated-game episodes** with NVIDIA Nemotron Nano and Super, a short
 private draft reduced average benchmark decision loss by **16.8–37.5%** across
 two models and two temperatures. The same procedure increased loss against
-Tit-for-Tat and produced less cooperation in autonomous self-play.
+Tit-for-Tat and produced **less cooperation** in autonomous self-play.
 
 **Nebius Token Factory** hosted NVIDIA Nemotron Nano and Super for the evaluation.
 The website offers free browser play, saved games and replay exports without
@@ -72,8 +72,7 @@ The system instruction stated:
 The user message supplied the current round, both cumulative scores, the complete
 revealed action/payoff history, and the two legal actions. The instructions gave
 either the announced total and remaining rounds or the continuation probability
-with no announced final round. Models chose neutral **X/Y labels**; both
-assignments of those labels to the numerical payoff table were tested.
+with no announced final round.
 
 Benchmark players were told the opponent's complete deterministic rule;
 autonomous players were told that the opponent policy was unspecified. Current
@@ -82,12 +81,11 @@ communication and received no analytical best-response solution or analyst
 feedback. Draft used the same game information and objective; only that decision's
 private draft was added to its separate action request.
 
-The **6,144 benchmark episodes** use four disclosed opponent rules: Always
+The 6,144 benchmark episodes use four disclosed opponent rules: Always
 Cooperate, Always Defect, Tit-for-Tat and Grim. Exact dynamic programming finds
 the best achievable expected own payoff for each choice. **Decision loss** is
 the normalised payoff forgone by an action, allowing optimal play afterward.
-A reduction in loss means fewer points given up; it is separate from a percentage
-gain in earned reward.
+A reduction in loss means fewer points given up.
 
 ## Drafting improves the average
 
@@ -129,38 +127,23 @@ Super at temperature zero illustrates the role of recovery. Direct self-play
 starts with no mutually cooperative first rounds, then returns to cooperation
 in **82 of 218 eligible transitions**. Draft has no observed return to mutual
 cooperation in **325 opportunities**. Direct accumulates **124/376 cooperative
-rounds**, compared with **3/376** under Draft. These are round counts, with a
-different denominator from the episode-weighted chart. Cooperation can emerge
-through the history of interaction even when it is absent at the start.
+rounds**, compared with **3/376** under Draft. 
 
-## What these patterns open up
+## What these patterns show
 
 The results connect three questions that are useful to study separately: Can an
 agent identify the best action against a known policy? Can it plan through that
-policy's future responses? Can two adaptive agents establish and repair a
+policy's future responses? Can two adaptive agents establish and/or repair a
 productive relationship?
 
-The PDF notes develop future work on explicit contingent planning, forgiving
-partners, communication and noisy observations, longer interactions, and more
-varied incentives and populations. Controlled repair opportunities could reveal
-when cautious play becomes a persistent low-cooperation pattern. Adding messages
-or noisy actions would show how agents interpret mistakes, commitments and
+Future work could try changing models' context/task framing to emphasise cooperation and long-term planning and/or hiding the opponent's strategy.
+Further, one can study how longer and changing interactions affect memory, context use and incentives;
+I would also be interested in paying more attention to the Chain-of-Thought reasoning and explanations.
+Adding messages or noisy actions would show how agents interpret mistakes, commitments and
 intent. Broader games and populations would test how these capabilities transfer
 across changing social environments.
 
 ## Evidence and methods
-
-Matched environments interleave both temperatures across **48 blocks**, balanced
-between action-label mappings and display seats. The four drafting comparisons
-were fixed before this campaign's outcomes; opponent, self-play and presentation
-slices are exploratory. The released action histories reproduce exact scores,
-contrasts and figures offline. Native Inspect AI logs, local MLflow tracking and
-frozen source records connect execution to that analysis.
-
-The comparison concerns the stated models, procedures and environments.
-Temperature comparisons use nominal 95% intervals, and exploratory comparisons
-have no family correction. Measured token use and request timing describe the
-resources used; usage-based cost estimates use the rates recorded during the run.
 
 - [Read the study and mathematical notes (PDF)]({{ '/dilemma-dynamics/research/paper/report.pdf' | relative_url }})
 - [Browse the repository and reproduction instructions](https://github.com/sheinkmana/dilemma-dynamics)
@@ -174,7 +157,6 @@ leads with charts and key numbers, followed by optional Study replay and detaile
 tables. The initial recording is selected by fixed metadata, independently of its
 outcome.
 
-[Recreational games]({{ '/dilemma-dynamics/#recreational' | relative_url }}) offers
-Tic-tac-toe and Dots & Boxes. They are mathematical games on discrete grids or
-lattices, with perfect information and visible sequential moves; their rules and
-tactical ideas are explained in that area.
+**Bonus!** [Recreational games]({{ '/dilemma-dynamics/#recreational' | relative_url }}) offers Tic-tac-toe and Dots & Boxes. They are mathematical games on discrete grids, with perfect information and visible sequential moves with nothing to hide.
+
+**Bonus 2!** [Link to the talk by Michael I. Jordan after which I decided to carefully read a book on game theory](https://youtu.be/mnniZJuMURk?si=lch3CoU181ZdJuzw&t=1817).
