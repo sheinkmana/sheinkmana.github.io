@@ -1,32 +1,34 @@
-# Personal webpage 
+# Personal webpage
 
-## Dilemma Dynamics demo
+## Dilemma Dynamics
 
 *Exploring AI strategies, incentives and cooperation.*
 
-`dilemma-dynamics/` is the generated static application, published at `/dilemma-dynamics/`.
-The sole completed 7,104-episode joint-temperature final evaluation and report are included. Replay
-and Results default to temperature zero and allow selecting temperature one.
-The native post is `_posts/2026-10-23-dilemma-dynamics.md`. The demo opens Study replay
-and includes Dilemma, Analysis, Study replay, Results and Board games. Free
-browser play, saved history, pause/resume and replay downloads need no API server,
-key or inference. Both app versions share the same interface and free features.
-Live NVIDIA Nemotron calls through Nebius require launching locally from the
-terminal: a paid API key embedded in this static website would be public, while
-the local server can keep it out of browser code. The app and post explain this
-split and link the terminal setup instructions.
+`dilemma-dynamics/` is the generated static application, published at
+`/dilemma-dynamics/`. It contains the **7,104-episode evaluation** across
+**temperatures 0 and 1**, saved recordings and PDF notes. The native post is
+`_posts/2026-10-23-dilemma-dynamics.md`.
 
-The main project studies cooperation and incentives in the repeated Prisoner's
-Dilemma, where private simultaneous choices can produce mutual gains. The full
-website and local app also have a separate recreational side project: Dots & Boxes and
-Tic-tac-toe explore competitive tactics and search on a fully visible board,
-with a fixed box total or opposing win/draw/loss objectives. Those games are
-outside the final 7,104-episode dilemma evaluation across temperatures 0 and 1.
+The app opens **Play & understand** (`#play`): learn the repeated Prisoner's
+Dilemma, play yourself, watch bots, or watch saved Nemotron games with round
+analysis. **Results** (`#results`) leads with findings and charts; optional
+**Study replay** sits below them (`#replay`), followed by detailed tables and
+methods. **Recreational games** (`#recreational`) offers Tic-tac-toe and Dots &
+Boxes: mathematical grid/lattice games with perfect information and visible
+sequential moves. The existing `#dilemma` and `#analysis` links remain supported.
 
-To update it, in the Dilemma Dynamics source checkout run `npm ci` and
-`npm run build:public`, then replace this site's `dilemma-dynamics/` contents with
-`dist/web/` and copy the source's `LICENSE` to `dilemma-dynamics/LICENSE.txt`.
-Do not copy the server build, local databases, credentials, or study output.
+Free browser play, saved history, pause/resume and replay exports need no API
+server, key or inference. Both app builds share this interface. For live Nemotron
+play through Nebius, [launch the app locally](https://github.com/sheinkmana/dilemma-dynamics#run-locally);
+the localhost server keeps the key private and calls use the player's account.
+
+To update, run `npm ci` and `npm run build:public` in the source checkout, then
+replace this site's `dilemma-dynamics/` contents with `dist/web/`. The
+source license is included as `dilemma-dynamics/LICENSE.txt`. The website build uses an
+explicit allowlist of app assets, PDF notes, required figures and viewer data,
+saved episodes and a website checksum manifest. Full scientific exports and TeX
+source stay in the repository. Local instructions, request records and private
+execution evidence stay local.
 
 Build with the existing deployment commands:
 
@@ -36,14 +38,17 @@ purgecss -c purgecss.config.js
 python3 bin/verify-dilemma-dynamics.py
 ```
 
-The verifier checks that Jekyll preserved every demo file byte-for-byte,
-the public research checksums still match, and the post and asset links resolve.
-Keep `dilemma-dynamics/**` in `jekyll-minifier.exclude`: Vite already minifies the app,
-and Jekyll's older JavaScript minifier cannot parse its bundle.
+For a staged bundle check before Jekyll is available, use
+`python3 bin/verify-dilemma-dynamics.py --source-only`. This checks the actual
+post source, assets and data without claiming a full site build.
+
+The default verifier checks that Jekyll preserves every demo file byte for byte, the
+website checksums match, and post and asset links resolve. Keep
+`dilemma-dynamics/**` in `jekyll-minifier.exclude`: Vite already minifies the app.
 PurgeCSS processes only the theme's `assets/css/`, leaving demo CSS intact.
 
 The existing deploy workflow publishes on a push to `master` or `main`.
-These local changes do not publish until committed and pushed.
+Local changes do not publish until committed and pushed.
 
 ### License al-folio
 
