@@ -2,15 +2,13 @@
 
 A calm, pedagogically designed Hebrew verb reference and trainer inspired by [Pealim.com](https://www.pealim.com), built as a zero-dependency static web app ready for local use or GitHub Pages hosting.
 
+Verb lookup, conjugation, and training use the bundled data and rules in this folder. They do not call Gemini or any other language model, and the page blocks application network requests with a Content Security Policy. Bookmarks and custom verbs are stored in the browser. The optional pronunciation feature uses the browser's speech synthesis, which depends on the voices and services available on the device. Google Fonts and the optional Pealim reference link require internet access, but are not needed for the core features.
+
 ## Run Locally
 Open `index.html` directly in any browser, or serve locally:
 ```bash
-python3 -m http.server 8080 --directory /Users/alisasheinkman/Desktop/hebrew
+python3 -m http.server 8080 --directory hebrew
 ```
 
-## Host on Your GitHub Pages Blog (`sheinkmana.github.io`)
-Because all paths in `index.html` are relative (`./styles.css`, `./data/binyanim.js`, `./data/verbs.js`, `./app.js`), you can host it at `https://sheinkmana.github.io/hebrew/` by copying the folder into your blog repo:
-```bash
-mkdir -p /Users/alisasheinkman/Documents/GitHub/sheinkmana.github.io/hebrew
-cp -R /Users/alisasheinkman/Desktop/hebrew/* /Users/alisasheinkman/Documents/GitHub/sheinkmana.github.io/hebrew/
-```
+## GitHub Pages
+The app uses relative paths and is served from the `hebrew/` folder of this repository.
