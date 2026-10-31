@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>בִּנְיָן · Binyan Studio — Intuitive Hebrew Verb Explorer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@500;700&family=Heebo:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body class="color-morph-on">
+  <!-- Top App Header -->
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="brand">
+        <div class="brand-mark">בּ</div>
+        <div>
+          <div class="brand-title">
+            <span>Binyan Studio</span>
+            <span class="brand-title-he">בִּנְיָן</span>
+          </div>
+          <div class="brand-subtitle">Calm, morphological Hebrew verb companion · Inspired by Pealim</div>
+        </div>
+      </div>
+
+      <nav class="main-nav" aria-label="Main Modes">
+        <button class="nav-tab active" data-view="explorer" onclick="window.switchView('explorer')">
+          <span>Verb Explorer</span>
+          <span class="tab-he">מִלּוֹן</span>
+        </button>
+        <button class="nav-tab" data-view="binyanim" onclick="window.switchView('binyanim')">
+          <span>The 7 Binyanim Map</span>
+          <span class="tab-he">7 הַבִּנְיָנִים</span>
+        </button>
+        <button class="nav-tab" data-view="trainer" onclick="window.switchView('trainer')">
+          <span>Pattern Trainer</span>
+          <span class="tab-he">תִּרְגּוּל</span>
+        </button>
+        <button class="nav-tab" data-view="notebook" onclick="window.switchView('notebook')">
+          <span>Study Deck &amp; Workshop</span>
+          <span class="tab-he">מַחְבֶּרֶת</span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Pedagogical Lens Sub-Toolbar -->
+  <div class="learning-toolbar">
+    <div class="toolbar-inner">
+      <div class="lens-toggles">
+        <button id="lens-morph-btn" class="lens-btn active" onclick="window.toggleLens('colorMorph')" title="Highlight 3-letter Root vs. Binyan Prefixes & Person Suffixes">
+          <span class="lens-dot"></span> Color-Code Root &amp; Pattern
+        </button>
+        <button id="lens-spoken-btn" class="lens-btn active" onclick="window.toggleLens('spokenOnly')" title="Hide archaic feminine plural forms (תפעלנה) rarely used in modern speech">
+          <span class="lens-dot"></span> Everyday Spoken Hebrew
+        </button>
+        <button id="lens-nikud-btn" class="lens-btn" onclick="window.toggleLens('showNikud')" title="Practice reading unvoweled Hebrew like street signs & WhatsApp messages">
+          <span class="lens-dot"></span> Street Mode (Hide Nikud)
+        </button>
+      </div>
+
+      <div class="morph-legend" aria-label="Color-coding key">
+        <span style="color:var(--text-muted); font-weight:500;">Anatomy Key:</span>
+        <span class="legend-item" style="color:var(--morph-prefix);">
+          <span class="legend-swatch swatch-prefix"></span> Prefix (תחילית)
+        </span>
+        <span class="legend-item" style="color:var(--morph-root);">
+          <span class="legend-swatch swatch-root"></span> 3-Letter Root (שׁוֹרֶשׁ)
+        </span>
+        <span class="legend-item" style="color:var(--morph-infix);">
+          <span class="legend-swatch swatch-infix"></span> Binyan Vowel (תבנית)
+        </span>
+        <span class="legend-item" style="color:var(--morph-suffix);">
+          <span class="legend-swatch swatch-suffix"></span> Person Ending (סיומת)
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Workspace Container -->
+  <main class="main-container">
+    <!-- VIEW 1: VERB EXPLORER -->
+    <section id="view-explorer" class="view-section active">
+      <div class="explorer-grid">
+        <!-- Left Sidebar: Search, Binyan Filter & Verb List -->
+        <aside class="search-panel">
+          <div class="search-input-wrap">
+            <input
+              type="text"
+              id="verb-search-input"
+              class="search-input"
+              placeholder="Search English, Hebrew, translit, or root (כ-ת-ב)..."
+              autocomplete="off"
+            />
+            <button id="search-clear-btn" class="search-clear-btn" title="Clear search">✕</button>
+          </div>
+
+          <div class="binyan-filter-chips">
+            <button class="filter-chip active" data-binyan="all" onclick="window.setBinyanFilter('all')">All (7)</button>
+            <button class="filter-chip" data-binyan="paal" onclick="window.setBinyanFilter('paal')">פָּעַל Pa'al</button>
+            <button class="filter-chip" data-binyan="nifal" onclick="window.setBinyanFilter('nifal')">נִפְעַל Nif'al</button>
+            <button class="filter-chip" data-binyan="piel" onclick="window.setBinyanFilter('piel')">פִּעֵל Pi'el</button>
+            <button class="filter-chip" data-binyan="pual" onclick="window.setBinyanFilter('pual')">פֻּעַל Pu'al</button>
+            <button class="filter-chip" data-binyan="hifil" onclick="window.setBinyanFilter('hifil')">הִפְעִיל Hif'il</button>
+            <button class="filter-chip" data-binyan="hufal" onclick="window.setBinyanFilter('hufal')">הֻפְעַל Huf'al</button>
+            <button class="filter-chip" data-binyan="hitpael" onclick="window.setBinyanFilter('hitpael')">הִתְפַּעֵל Hitpa'el</button>
+          </div>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem; font-size:0.76rem; color:var(--text-muted);">
+            <span>Reverse-conjugation search enabled</span>
+            <span id="verb-count-label">19 verbs</span>
+          </div>
+
+          <div id="verb-list" class="verb-list"></div>
+        </aside>
+
+        <!-- Right Stage: Active Verb Breakdown, Root Siblings, & Conjugation Cards -->
+        <div id="verb-stage" class="verb-stage"></div>
+      </div>
+    </section>
+
+    <!-- VIEW 2: THE 7 BINYANIM ARCHITECTURE MAP -->
+    <section id="view-binyanim" class="view-section">
+      <div id="binyanim-view-content"></div>
+    </section>
+
+    <!-- VIEW 3: PATTERN TRAINER -->
+    <section id="view-trainer" class="view-section">
+      <div id="trainer-view-content"></div>
+    </section>
+
+    <!-- VIEW 4: STUDY DECK & CUSTOM VERB WORKSHOP -->
+    <section id="view-notebook" class="view-section">
+      <div id="notebook-view-content"></div>
+    </section>
+  </main>
+
+  <script src="./data/binyanim.js"></script>
+  <script src="./data/verbs.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
