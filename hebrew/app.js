@@ -221,7 +221,7 @@
              </div>`
           : "";
         return `
-          <div class="verb-list-item ${isActive ? "active" : ""}" onclick="window.selectVerb('${verb.id}')">
+          <div class="verb-list-item ${isActive ? "active" : ""}" onclick="window.selectVerb('${verb.id}'); if (window.matchMedia('(max-width: 980px)').matches) document.getElementById('verb-stage').scrollIntoView({behavior: 'smooth', block: 'start'});">
             <div class="vli-left">
               <div class="vli-eng">${verb.english}</div>
               <div class="vli-meta">
@@ -1126,7 +1126,7 @@
             <span style="font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:0.05em; color:var(--text-muted);">
               Live Conjugation Preview
             </span>
-            <div style="display:flex; align-items:baseline; gap:0.65rem; margin-top:0.15rem;">
+            <div style="display:flex; align-items:baseline; flex-wrap:wrap; gap:0.65rem; margin-top:0.15rem;">
               <span style="font-family:var(--font-hebrew); font-size:1.65rem; font-weight:700; direction:rtl;">
                 ${renderMorphParts(verbObj.infinitiveParts, verbObj.infinitive)}
               </span>
@@ -1149,7 +1149,7 @@
           ${gizrah.note}
         </div>
 
-        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(175px, 1fr)); gap:0.6rem;">
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(175px, 100%), 1fr)); gap:0.6rem;">
           <div style="background:var(--bg-surface); padding:0.55rem 0.75rem; border-radius:var(--radius-sm); border:1px solid var(--border-subtle);">
             <div style="font-size:0.72rem; color:var(--text-muted); font-weight:600;">PRESENT (הוּא / הִיא)</div>
             <div style="font-family:var(--font-hebrew); font-size:1.2rem; font-weight:700; direction:rtl; margin-top:0.1rem;">
