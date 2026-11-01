@@ -1575,6 +1575,22 @@
     });
   });
 
+  // Additional entries from the Lilmod Aleph Beth verb list. Each entry starts
+  // as vocabulary only; checked forms below replace this when available.
+  (window.LILMOD_VERBS || []).forEach((entry) => {
+    VERBS_LIST.push({
+      id: entry.id, infinitive: entry.infinitive, infinitiveUnvoweled: entry.spelling,
+      infinitiveParts: [], translit: entry.translit, english: entry.english,
+      root: entry.root, binyan: entry.binyan, aliases: entry.aliases || [],
+      presentNote: entry.presentNote,
+      headwordOnly: entry.headwordOnly,
+      vocabularyOnly: true, preposition: "—", gizrah: "—",
+      gizrahTip: entry.note || "Conjugations are not yet available for this entry.",
+      semanticNote: "Included in the Lilmod Aleph Beth verb list.",
+      examples: [], tables: {}, sourceUrl: entry.url
+    });
+  });
+
   // Use the checked forms for the bundled deck instead of generated paradigms.
   const personLabels = {
     ms: "masculine singular", fs: "feminine singular", mp: "masculine plural", fp: "feminine plural",
@@ -1582,7 +1598,8 @@
     "2mp": "you (m. pl.)", "2fp": "you (f. pl.)", "3ms": "he / it", "3fs": "she / it", "3p": "they"
   };
   VERBS_LIST.forEach((verb) => {
-    const checked = window.VERIFIED_FORMS && window.VERIFIED_FORMS[verb.id];
+    const checked = (window.VERIFIED_FORMS && window.VERIFIED_FORMS[verb.id]) ||
+      (window.LILMOD_FORMS && window.LILMOD_FORMS[verb.id]);
     if (!checked) return;
     const tables = { present: {}, past: {} };
     Object.entries(checked.forms).forEach(([key, value]) => {
@@ -1595,11 +1612,14 @@
       };
     });
     verb.tables = tables;
-    if (checked.infinitive) verb.infinitive = checked.infinitive;
+    if (checked.infinitive && !verb.headwordOnly) verb.infinitive = checked.infinitive;
     verb.vocabularyOnly = false;
     verb.verifiedForms = true;
     verb.sourceUrl = checked.url;
-    verb.gizrahTip = "Present and past forms checked against Pealim.";
+    const checkedTenses = Object.keys(tables.present).length ? "Present and past forms" : "Past forms";
+    verb.gizrahTip = (verb.gizrahTip && verb.gizrahTip !== "Conjugations are not yet available for this entry." && verb.id.startsWith("lilmod_"))
+      ? `${verb.gizrahTip} ${checkedTenses} checked against Pealim.`
+      : "Present and past forms checked against Pealim.";
   });
 
   // Normalize each lexicon entry with .english, .infinitive, and .translit

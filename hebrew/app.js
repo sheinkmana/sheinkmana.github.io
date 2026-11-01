@@ -453,13 +453,13 @@
           <div class="tense-block-header">
             <div class="tense-block-title">
               <span>הֹוֶה · Present Tense (Participle)</span>
-              <span class="tense-melody-hint">Melody: <strong>${bMeta.vowelMelody.present}</strong></span>
+              ${pCards ? `<span class="tense-melody-hint">Melody: <strong>${bMeta.vowelMelody.present}</strong></span>` : ""}
             </div>
-            <span style="font-size:0.8rem; color:var(--text-muted);">
+            ${pCards ? `<span style="font-size:0.8rem; color:var(--text-muted);">
               Tip: Present tense in Hebrew only changes by Gender & Number (4 forms total!)
-            </span>
+            </span>` : ""}
           </div>
-          <div class="present-grid">${pCards}</div>
+          ${pCards ? `<div class="present-grid">${pCards}</div>` : `<div class="pedagogy-callout">${verb.presentNote || "Present forms are not available for this verb."}</div>`}
         </div>
       `);
     }
@@ -602,7 +602,7 @@
         <div class="tense-nav-bar">
           <div class="tense-tabs">
             <button class="tense-tab ${state.activeTense === "all" ? "active" : ""}" onclick="window.setTense('all')">All Tenses Overview</button>
-            <button class="tense-tab ${state.activeTense === "present" ? "active" : ""}" onclick="window.setTense('present')">הֹוֶה · Present (4)</button>
+            <button class="tense-tab ${state.activeTense === "present" ? "active" : ""}" onclick="window.setTense('present')">הֹוֶה · Present${Object.keys(verb.tables.present || {}).length ? " (4)" : ""}</button>
             <button class="tense-tab ${state.activeTense === "past" ? "active" : ""}" onclick="window.setTense('past')">עָבָר · Past</button>
           </div>
           <div style="font-size:0.8rem; color:var(--text-muted);">
@@ -773,7 +773,11 @@
 
   // Render View 3: Pattern Trainer & Active Recall
   function generateQuizQuestion() {
-    const verbs = getAllVerbs().filter((verb) => !verb.vocabularyOnly);
+    // The trainer requires both tenses and enough distinct answers, while the
+    // explorer can also show legitimately incomplete paradigms such as להיות.
+    const verbs = getAllVerbs().filter((verb) => !verb.vocabularyOnly &&
+      Object.keys(verb.tables.present || {}).length >= 4 &&
+      Object.keys(verb.tables.past || {}).length >= 4);
     const verb = verbs[Math.floor(Math.random() * verbs.length)];
     const bMeta = window.BINYANIM_DATA.binyanim[verb.binyan];
 
