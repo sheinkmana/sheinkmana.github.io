@@ -1575,6 +1575,33 @@
     });
   });
 
+  // Use the checked forms for the bundled deck instead of generated paradigms.
+  const personLabels = {
+    ms: "masculine singular", fs: "feminine singular", mp: "masculine plural", fp: "feminine plural",
+    "1s": "I", "1p": "we", "2ms": "you (m. sg.)", "2fs": "you (f. sg.)",
+    "2mp": "you (m. pl.)", "2fp": "you (f. pl.)", "3ms": "he / it", "3fs": "she / it", "3p": "they"
+  };
+  VERBS_LIST.forEach((verb) => {
+    const checked = window.VERIFIED_FORMS && window.VERIFIED_FORMS[verb.id];
+    if (!checked) return;
+    const tables = { present: {}, past: {} };
+    Object.entries(checked.forms).forEach(([key, value]) => {
+      const [prefix, person] = key.split("-");
+      const tense = prefix === "AP" ? "present" : "past";
+      const [full, translit, plain] = value;
+      tables[tense][person] = {
+        full, translit, unvoweled: plain || stripNikud(full), parts: [],
+        english: `${personLabels[person]} · ${verb.english}`
+      };
+    });
+    verb.tables = tables;
+    if (checked.infinitive) verb.infinitive = checked.infinitive;
+    verb.vocabularyOnly = false;
+    verb.verifiedForms = true;
+    verb.sourceUrl = checked.url;
+    verb.gizrahTip = "Present and past forms checked against Pealim.";
+  });
+
   // Normalize each lexicon entry with .english, .infinitive, and .translit
   const NORMALIZED_LEXICON = ENGLISH_ROOT_LEXICON.map((item) => {
     const spec = buildInfinitiveSpec(item.root, item.binyan, item.tr);

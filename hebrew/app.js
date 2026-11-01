@@ -140,7 +140,7 @@
 
       // Check all conjugated cells for reverse-lookup (like Pealim!)
       let foundCell = null;
-      const tenses = ["present", "past", "future", "imperative"];
+      const tenses = ["present", "past"];
       for (const t of tenses) {
         const tbl = verb.tables[t];
         if (!tbl) continue;
@@ -528,69 +528,6 @@
       );
     }
 
-    // 3. FUTURE TENSE (עתיד)
-    if (state.activeTense === "all" || state.activeTense === "future") {
-      blocks.push(
-        renderPersonTenseBlock(
-          "future",
-          "עָתִיד",
-          "Future Tense (Prefixes א-ת-י-נ tell Who)",
-          bMeta.vowelMelody.future,
-          "Mnemonic אית״ן (Eitan): א=אני, ת=אתה/את/אתם/היא, י=הוא/הם, נ=אנחנו."
-        )
-      );
-    }
-
-    // 4. IMPERATIVE (ציווי)
-    if (state.activeTense === "all" || state.activeTense === "imperative") {
-      const impTbl = verb.tables.imperative;
-      if (!impTbl) {
-        blocks.push(`
-          <div class="tense-section-block">
-            <div class="tense-block-title">צִוּוּי · Imperative (Commands)</div>
-            <p style="font-size:0.88rem; color:var(--text-muted); margin-top:0.4rem;">
-              Passive Binyanim (${bMeta.name}) do not have an Imperative form because you cannot command a passive action.
-            </p>
-          </div>
-        `);
-      } else {
-        const impCards = PRONOUN_META.imperative
-          .map((im) => {
-            const cell = impTbl[im.key];
-            if (!cell) return "";
-            if (state.spokenOnly && cell.isFormal) return "";
-            const inspectPayload = encodeURIComponent(
-              JSON.stringify({ tenseLabel: `Imperative · ${im.label}`, pronoun: im.hebPronoun, formObj: cell })
-            );
-            return `
-              <div class="conj-card ${cell.isFormal ? "formal-only" : ""}" onclick="window.inspectCell('${inspectPayload}', '${cell.full}')">
-                <div class="conj-card-top">
-                  <span class="pronoun-chip">${im.hebPronoun}</span>
-                  <span>${im.label}</span>
-                  <button class="audio-btn" style="width:28px;height:28px;font-size:0.8rem;" onclick="window.speakHebrew('${cell.full}', event)">🔊</button>
-                </div>
-                <div class="conj-hebrew">${renderMorphParts(cell.parts, cell.full)}</div>
-                <div class="conj-translit">${cell.translit}</div>
-                <div class="conj-english">${cell.english}</div>
-              </div>
-            `;
-          })
-          .join("");
-
-        blocks.push(`
-          <div class="tense-section-block">
-            <div class="tense-block-header">
-              <div class="tense-block-title">צִוּוּי · Imperative (Direct Commands)</div>
-              <span style="font-size:0.8rem; color:var(--text-muted);">
-                Spoken Hebrew Tip: In everyday conversation, Israelis often use the 2nd-person Future (e.g. תִּכְתֹּב) as a polite command!
-              </span>
-            </div>
-            <div class="present-grid">${impCards}</div>
-          </div>
-        `);
-      }
-    }
-
     return blocks.join("");
   }
 
@@ -599,7 +536,7 @@
     const verb = getVerbById(state.selectedVerbId);
     const bMeta = window.BINYANIM_DATA.binyanim[verb.binyan];
     const isSaved = state.bookmarks.includes(verb.id);
-    const pealimSearchUrl = `https://www.pealim.com/search/?q=${encodeURIComponent(verb.infinitiveUnvoweled)}`;
+    const pealimSearchUrl = verb.sourceUrl || `https://www.pealim.com/search/?q=${encodeURIComponent(verb.infinitiveUnvoweled)}`;
 
     const stageEl = document.getElementById("verb-stage");
     stageEl.innerHTML = `
@@ -652,7 +589,7 @@
           ${verb.semanticNote ? `<div><strong>🔗 Root Connection:</strong> ${verb.semanticNote}</div>` : ""}
         </div>
 
-        ${verb.vocabularyOnly ? "" : renderAnatomyInspector(verb)}
+        ${verb.vocabularyOnly || verb.verifiedForms ? "" : renderAnatomyInspector(verb)}
       </div>
 
       <!-- Same Shoresh Across the 7 Binyanim -->
@@ -666,8 +603,6 @@
             <button class="tense-tab ${state.activeTense === "all" ? "active" : ""}" onclick="window.setTense('all')">All Tenses Overview</button>
             <button class="tense-tab ${state.activeTense === "present" ? "active" : ""}" onclick="window.setTense('present')">הֹוֶה · Present (4)</button>
             <button class="tense-tab ${state.activeTense === "past" ? "active" : ""}" onclick="window.setTense('past')">עָבָר · Past</button>
-            <button class="tense-tab ${state.activeTense === "future" ? "active" : ""}" onclick="window.setTense('future')">עָתִיד · Future</button>
-            <button class="tense-tab ${state.activeTense === "imperative" ? "active" : ""}" onclick="window.setTense('imperative')">צִוּוּי · Imperative</button>
           </div>
           <div style="font-size:0.8rem; color:var(--text-muted);">
             ${state.spokenOnly ? "Showing Everyday Spoken Forms (archaic f.pl. hidden)" : "Showing Full Academic Paradigm"}
@@ -771,7 +706,6 @@
             <div class="bac-melody-table">
               <div><strong>Past:</strong> ${b.vowelMelody.past}</div>
               <div><strong>Present:</strong> ${b.vowelMelody.present}</div>
-              <div><strong>Future:</strong> ${b.vowelMelody.future}</div>
               <div><strong>Infinitive:</strong> ${b.vowelMelody.infinitive}</div>
             </div>
             <div style="font-size:0.82rem; color:var(--text-secondary);">💡 <em>${b.pedagogyTip}</em></div>
@@ -842,7 +776,7 @@
     const verb = verbs[Math.floor(Math.random() * verbs.length)];
     const bMeta = window.BINYANIM_DATA.binyanim[verb.binyan];
 
-    const tensePool = ["present", "past", "future"];
+    const tensePool = ["present", "past"];
     const tKey = tensePool[Math.floor(Math.random() * tensePool.length)];
     const tbl = verb.tables[tKey];
     const entries = Object.entries(tbl).filter(([, c]) => !c.isFormal);
@@ -1174,16 +1108,7 @@
             </div>
           </div>
 
-          <div style="background:var(--bg-surface); padding:0.55rem 0.75rem; border-radius:var(--radius-sm); border:1px solid var(--border-subtle);">
-            <div style="font-size:0.72rem; color:var(--text-muted); font-weight:600;">FUTURE (אֲנִי / הוּא)</div>
-            <div style="font-family:var(--font-hebrew); font-size:1.2rem; font-weight:700; direction:rtl; margin-top:0.1rem;">
-              ${renderMorphParts(verbObj.tables.future["1s"].parts, verbObj.tables.future["1s"].full)} /
-              ${renderMorphParts(verbObj.tables.future["3ms"].parts, verbObj.tables.future["3ms"].full)}
-            </div>
-            <div style="font-size:0.75rem; color:var(--text-secondary);">
-              ${verbObj.tables.future["1s"].translit} / ${verbObj.tables.future["3ms"].translit}
-            </div>
-          </div>
+
         </div>
       </div>
     `;
