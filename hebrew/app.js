@@ -129,6 +129,7 @@
         (verb.aliases || []).some((alias) => alias.includes(qStripped)) ||
         verb.infinitiveUnvoweled.includes(qStripped) ||
         verb.english.toLowerCase().includes(q) ||
+        (window.russianMeaning(verb.english) || "").toLowerCase().includes(q) ||
         verb.translit.replace(/·/g, "").toLowerCase().includes(q) ||
         verb.root.includes(q) ||
         (qStripped.length >= 2 && rootClean.includes(qStripped));

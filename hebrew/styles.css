@@ -1199,3 +1199,33 @@ body.color-morph-on .m-suffix {
   .present-grid { grid-template-columns: minmax(0, 1fr); }
   .strip-cards { grid-template-columns: minmax(0, 1fr); }
 }
+
+.language-switch select {
+  border: 1px solid var(--border-strong);
+  border-radius: 8px;
+  padding: 0.45rem 0.6rem;
+  color: var(--text-primary);
+  background: var(--bg-surface);
+  font: inherit;
+  cursor: pointer;
+}
+.language-switch .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+.translation-notice {
+  margin: 0;
+  padding: 0.55rem 1.5rem;
+  text-align: center;
+  background: var(--bg-subtle);
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+}
+.translation-notice[hidden] { display: none; }
