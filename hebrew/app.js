@@ -126,6 +126,7 @@
       const rootClean = verb.root.replace(/[-.\s]/g, "");
       const infMatch =
         verb.infinitive.includes(q) ||
+        (verb.aliases || []).some((alias) => alias.includes(qStripped)) ||
         verb.infinitiveUnvoweled.includes(qStripped) ||
         verb.english.toLowerCase().includes(q) ||
         verb.translit.replace(/·/g, "").toLowerCase().includes(q) ||
@@ -311,7 +312,7 @@
             <span>🏗️ Root Family Matrix · שׁוֹרֶשׁ <strong>${verb.root}</strong> Across the Binyanim</span>
           </div>
           <span style="font-size:0.78rem; color:var(--text-muted);">
-            Click any building below to see how the same 3 root letters shift voice & meaning
+            Click any building below to see how the same root letters shift voice & meaning
           </span>
         </div>
         <div class="strip-cards">
@@ -651,13 +652,14 @@
           ${verb.semanticNote ? `<div><strong>🔗 Root Connection:</strong> ${verb.semanticNote}</div>` : ""}
         </div>
 
-        ${renderAnatomyInspector(verb)}
+        ${verb.vocabularyOnly ? "" : renderAnatomyInspector(verb)}
       </div>
 
       <!-- Same Shoresh Across the 7 Binyanim -->
       ${renderRootFamilyStrip(verb)}
 
       <!-- Conjugation Tables with Focused Tense Tabs -->
+      ${verb.vocabularyOnly ? `<div class="pedagogy-callout">Conjugations are not yet available for this verb. Use the reference link above to check its forms.</div>` : `
       <div class="conjugation-container">
         <div class="tense-nav-bar">
           <div class="tense-tabs">
@@ -673,7 +675,7 @@
         </div>
 
         ${renderConjugationTables(verb)}
-      </div>
+      </div>`}
 
       <!-- Real-Life Context Examples -->
       ${
@@ -836,7 +838,7 @@
 
   // Render View 3: Pattern Trainer & Active Recall
   function generateQuizQuestion() {
-    const verbs = getAllVerbs();
+    const verbs = getAllVerbs().filter((verb) => !verb.vocabularyOnly);
     const verb = verbs[Math.floor(Math.random() * verbs.length)];
     const bMeta = window.BINYANIM_DATA.binyanim[verb.binyan];
 

@@ -1512,6 +1512,69 @@
     { en: "laugh", root: "צ-ח-ק", binyan: "paal", meaning: "to laugh", past: "laughed", tr: ["tz", "ch", "k"] }
   ];
 
+
+  // Vocabulary from Hebrew from Scratch, Book Bet. Conjugations are deliberately
+  // omitted until verified; the generic generator cannot handle every root here.
+  const BOOK_BET_VERBS = [
+    ["לאסוף", "le'esof", "to gather / collect", "א-ס-פ", "paal"],
+    ["לבשל", "levashel", "to cook", "ב-ש-ל", "piel"],
+    ["לדאוג", "lid'og", "to worry / take care", "ד-א-ג", "paal"],
+    ["להשפיע", "lehashpia", "to influence", "ש-פ-ע", "hifil"],
+    ["להתגעגע", "lehitga'agea", "to miss / long for someone", "ג-ע-ג-ע", "hitpael"],
+    ["להתחבא", "lehitkhabe", "to hide", "ח-ב-א", "hitpael"],
+    ["לטפל", "letapel", "to look after / take care of", "ט-פ-ל", "piel"],
+    ["למכור", "limkor", "to sell", "מ-כ-ר", "paal"],
+    ["להיגמר", "lehigamer", "to end / run out", "ג-מ-ר", "nifal"],
+    ["להיזכר", "lehizakher", "to recall / remember", "ז-כ-ר", "nifal"],
+    ["לנגן", "lenagen", "to play an instrument", "נ-ג-נ", "piel"],
+    ["לשתוק", "lishtok", "to be silent", "ש-ת-ק", "paal"],
+    ["לברוא", "livro", "to create (divine)", "ב-ר-א", "paal"],
+    ["להביא", "lehavi", "to bring", "ב-ו-א", "hifil"],
+    ["להימצא", "lehimatze", "to be found", "מ-צ-א", "nifal"],
+    ["לתפוס", "litfos", "to catch", "ת-פ-ס", "paal"],
+    ["לשקר", "leshaker", "to lie", "ש-ק-ר", "piel"],
+    ["לשנוא", "lisno", "to hate", "ש-נ-א", "paal"],
+    ["לשפוט", "lishpot", "to judge", "ש-פ-ט", "paal", "לשפוע"],
+    ["לברוח", "livroach", "to escape / flee", "ב-ר-ח", "paal"],
+    ["להתווכח", "lehitvakeach", "to argue", "ו-כ-ח", "hitpael"],
+    ["לחבק", "lechabek", "to hug", "ח-ב-ק", "piel"],
+    ["להימשך", "lehimashekh", "to last / continue", "מ-ש-כ", "nifal"],
+    ["לצבוע", "litzboa", "to color / paint", "צ-ב-ע", "paal"],
+    ["להפריע", "lehafria", "to disturb", "פ-ר-ע", "hifil"],
+    ["לחייך", "lechayekh", "to smile", "ח-י-כ", "piel"],
+    ["למסור", "limsor", "to give / hand over", "מ-ס-ר", "paal"],
+    ["להיכשל", "lehikashel", "to fail", "כ-ש-ל", "nifal"],
+    ["לצעוק", "litz'ok", "to shout", "צ-ע-ק", "paal"],
+    ["לגנוב", "lignov", "to steal", "ג-נ-ב", "paal"],
+    ["לגעת", "laga'at", "to touch", "נ-ג-ע", "paal"],
+    ["להיעלם", "lehe'alem", "to disappear", "ע-ל-מ", "nifal"],
+    ["לצלצל", "letzaltzel", "to ring / call", "צ-ל-צ-ל", "piel"],
+    ["לתרגם", "letargem", "to translate", "ת-ר-ג-מ", "piel"],
+    ["להתחזק", "lehitkhazek", "to gather strength / grow stronger", "ח-ז-ק", "hitpael"],
+    ["לחנך", "lechanekh", "to educate", "ח-נ-כ", "piel"],
+    ["לכבד", "lekhabed", "to respect / honor", "כ-ב-ד", "piel"],
+    ["להיהרג", "lehareg", "to be killed", "ה-ר-ג", "nifal"],
+    ["לפטפט", "lefatpet", "to babble / chatter", "פ-ט-פ-ט", "piel"],
+    ["לקשקש", "lekashkesh", "to prattle", "ק-ש-ק-ש", "piel"],
+    ["לעלות", "la'alot", "to go up / ascend", "ע-ל-ה", "paal"],
+    ["לרדת", "laredet", "to go down / descend", "י-ר-ד", "paal"],
+    ["לעוף", "la'uf", "to fly", "ע-ו-פ", "paal"],
+    ["לטוס", "latus", "to fly in an airplane", "ט-ו-ס", "paal"],
+    ["לשתות", "lishtot", "to drink", "ש-ת-ה", "paal"],
+    ["להתקלח", "lehitkaleach", "to shower", "ק-ל-ח", "hitpael"],
+    ["להשקות", "lehashkot", "to water plants", "ש-ק-ה", "hifil"]
+  ];
+  BOOK_BET_VERBS.forEach(([infinitive, translit, english, root, binyan, alias], index) => {
+    VERBS_LIST.push({
+      id: `book_bet_${index + 1}`, infinitive, infinitiveUnvoweled: infinitive,
+      infinitiveParts: [], translit, english, root, binyan,
+      aliases: alias ? [alias] : [], vocabularyOnly: true,
+      preposition: "—", gizrah: "—", gizrahTip: "Conjugations are not yet available for this entry.",
+      semanticNote: alias ? "The source prints לשפוע; the intended verb for ‘to judge’ is לשפוט." : "From Hebrew from Scratch, Book Bet.",
+      examples: [], tables: {}
+    });
+  });
+
   // Normalize each lexicon entry with .english, .infinitive, and .translit
   const NORMALIZED_LEXICON = ENGLISH_ROOT_LEXICON.map((item) => {
     const spec = buildInfinitiveSpec(item.root, item.binyan, item.tr);
