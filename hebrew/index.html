@@ -25,6 +25,8 @@
         </div>
       </div>
 
+      <label class="language-switch"> <span class="sr-only">Language / Язык</span><select id="language-select" aria-label="Language / Язык"><option value="en">English</option><option value="ru">Русский</option></select></label>
+
       <nav class="main-nav" aria-label="Main Modes">
         <button class="nav-tab active" data-view="explorer" onclick="window.switchView('explorer')">
           <span>Verb Explorer</span>
@@ -45,6 +47,8 @@
       </nav>
     </div>
   </header>
+
+  <p id="translation-notice" class="translation-notice" lang="ru" hidden>Некоторые объяснения и материалы мастерской пока доступны только на английском языке.</p>
 
   <!-- Pedagogical Lens Sub-Toolbar -->
   <div class="learning-toolbar">
@@ -140,6 +144,7 @@
   <script src="./data/binyanim.js"></script>
   <script src="./data/verified-forms.js"></script>
   <script src="./data/verbs.js"></script>
+  <script src="./i18n.js"></script>
   <script src="./app.js"></script>
 </body>
 </html>
