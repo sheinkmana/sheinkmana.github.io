@@ -3,7 +3,7 @@ layout: page
 title: sbi
 permalink: /sbi/
 description: Simulation-based inference for epidemiology
-nav: true
+nav: false
 nav_order: 3
 ---
 
