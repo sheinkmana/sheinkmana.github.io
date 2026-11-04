@@ -1,0 +1,538 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Epi Simulation: Simulation-Based Inference for Epidemiology</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main-pipeline">Skip to interactive pipeline</a>
+
+  <header class="topbar">
+    <a class="brand" href="#top" aria-label="Epi Simulation: Simulation-Based Inference for Epidemiology home">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 4 4M8 11l2-2 2 2 2-3"/></svg>
+      </span>
+      <span>Epi Simulation<span class="brand-light"> : </span>Simulation-Based Inference for Epidemiology</span>
+    </a>
+    <div class="topbar-center" role="navigation" aria-label="Quick jump to pipeline stages">
+      <a href="#stage-1-model" class="nav-pill"><span class="nav-step">1</span> Outbreak &amp; Shift</a>
+      <a href="#stage-2-methods" class="nav-pill"><span class="nav-step">2</span> 14 Estimators</a>
+      <a href="#stage-3-diagnostics" class="nav-pill"><span class="nav-step">3</span> Calibration &amp; PPC</a>
+      <a href="#stage-4-detective" class="nav-pill"><span class="nav-step">4</span> Provenance &amp; Audit</a>
+    </div>
+    <div class="topbar-right">
+      <button type="button" id="run-all-checks-btn" disabled title="Available in the local version" class="topbar-action-btn">
+        <span>Live checks available locally</span>
+      </button>
+      <span class="demo-badge"><span></span> SYNTHETIC BENCHMARK</span>
+      <span class="top-divider"></span>
+      <span class="system-status" id="connection" role="status"><i></i> Checking connection</span>
+    </div>
+  </header>
+
+  <main id="top"><div class="wrap" style="padding-top: 18px"><p class="study-note"><strong>Static edition:</strong> Explore the prepared benchmark results below. Predictive simulation, source audit and checkpoint replay require the <a href="https://github.com/sheinkmana/epi-simulation">local version</a> and cannot run on GitHub Pages.</p></div>
+    <!-- Hero & Interactive Pipeline Map -->
+    <section class="hero wrap" aria-label="Pipeline overview">
+      <div class="hero-header">
+        <div class="hero-copy">
+          <div class="eyebrow"><span class="eyebrow-line"></span> EPI SIMULATION · SIMULATION-BASED INFERENCE FOR EPIDEMIOLOGY</div>
+          <h1>Epi Simulation: <em>Simulation-Based Inference for Epidemiology</em></h1>
+          <p class="lead">
+            A coordinated, step-by-step workbench for inferring epidemic parameters when <strong>mechanistic models have no tractable likelihood</strong>—bringing clarity to a fragmented SBI literature on <strong>which estimator to apply</strong> and <strong>how to structure</strong> an end-to-end validation workflow.
+          </p>
+        </div>
+        <div class="hero-Controls-card">
+          <div class="hero-scenario-title">GLOBAL SCENARIO SWITCHER</div>
+          <p class="hero-scenario-desc">Toggle the observation regime across the entire pipeline to see how a shift to 25% reporting (from 50%) affects all 14 estimators:</p>
+          <div class="scenario-segmented" role="group" aria-label="Observation reporting regime">
+            <button type="button" class="scenario-btn active" data-global-scenario="matched">
+              <span class="scenario-dot matched-dot"></span>
+              <div>
+                <strong>50% Matched Reporting</strong>
+                <small>Simulator matches true data (ρ = 0.50)</small>
+              </div>
+            </button>
+            <button type="button" class="scenario-btn" data-global-scenario="shifted">
+              <span class="scenario-dot shifted-dot"></span>
+              <div>
+                <strong>25% Shifted Reporting</strong>
+                <small>25% reporting rate vs 50% model (ρ = 0.25)</small>
+              </div>
+            </button>
+          </div>
+          <p class="intro-note" id="global-scenario-banner">
+            Currently viewing <strong>Matched (50% reporting)</strong>: the simulator's reporting rate matches the true data-generating process.
+          </p>
+        </div>
+      </div>
+
+      <!-- Rationale & Why SBI Is Needed Banner -->
+      <div class="rationale-grid" aria-label="Why SBI is needed and project rationale">
+        <div class="rationale-card">
+          <div class="rationale-tag">WHY SBI IS NEEDED · INTRACTABLE LIKELIHOOD</div>
+          <h2>Epidemic models do not have a closed-form likelihood <code>p(Y | θ)</code></h2>
+          <p>
+            Stochastic epidemiological simulators (discrete-time chain-binomial SIR, Markov jump processes, stochastic-rate SDEs, and agent-based contact models) evolve hidden compartments <strong>(S<sub>t</sub>, I<sub>t</sub>, R<sub>t</sub>)</strong> while surveillance only observes noisy daily counts <strong>Y<sub>t</sub> ~ Binomial(ΔI<sub>t</sub>, ρ)</strong>. Evaluating the marginal likelihood <code>p(Y<sub>1:T</sub> | θ) = ∑<sub>S,I,R</sub> p(Y, S, I, R | θ)</code> requires summing over an exponentially large space of unobserved transmission histories. Because <strong>models do not have a tractable likelihood</strong>—only a forward simulator <code>θ → Y</code>—<strong>Simulation-Based Inference (SBI)</strong> is essential to learn or approximate posteriors directly from simulated outbreaks.
+          </p>
+        </div>
+        <div class="rationale-card">
+          <div class="rationale-tag">PROJECT RATIONALE · COORDINATION &amp; STRUCTURE</div>
+          <h2>Many papers, lack of coordination, and no clarity on which to apply or how to structure</h2>
+          <p>
+            Across the SBI literature, dozens of papers propose competing classical (<code>ABC</code>, <code>BSL</code>, <code>BOLFI</code>), neural (<code>FMPE</code>, <code>NPE-NSF</code>, <code>NPE-MAF</code>, <code>NPSE</code>, <code>TSNPE</code>, <code>NLE</code>, <code>BNRE</code>), and robust (<code>RNPE</code>, <code>Generalised Bayes</code>) methods across incompatible SIR formulations, priors, and unverified codebases. Practitioners face a lack of coordination with <strong>no clarity on which estimator to apply</strong> (especially when under-reporting breaks standard neural flows) and <strong>how to structure the workflow</strong>. This workbench coordinates 14 methods on one shared benchmark across 4 structured validation stages.
+          </p>
+        </div>
+      </div>
+
+      <!-- Visual 4-Stage Pipeline Stepper -->
+      <div class="pipeline-stepper" role="tablist" aria-label="Pipeline stage filter">
+        <button type="button" class="pipeline-stage-tab active" data-stage-view="all" role="tab" aria-selected="true">
+          <span class="stage-badge">ALL</span>
+          <div class="stage-tab-text">
+            <strong>Complete Guided Pipeline</strong>
+            <span>Show all 4 stages in sequence</span>
+          </div>
+        </button>
+        <button type="button" class="pipeline-stage-tab" data-stage-view="stage-1" role="tab" aria-selected="false">
+          <span class="stage-badge">01</span>
+          <div class="stage-tab-text">
+            <strong>Simulator &amp; Prior Check</strong>
+            <span>SIR dynamics (S→I→R→Y) &amp; shift</span>
+          </div>
+        </button>
+        <button type="button" class="pipeline-stage-tab" data-stage-view="stage-2" role="tab" aria-selected="false">
+          <span class="stage-badge">02</span>
+          <div class="stage-tab-text">
+            <strong>14-Method Benchmark</strong>
+            <span>Classical vs Neural vs Robust</span>
+          </div>
+        </button>
+        <button type="button" class="pipeline-stage-tab" data-stage-view="stage-3" role="tab" aria-selected="false">
+          <span class="stage-badge">03</span>
+          <div class="stage-tab-text">
+            <strong>Calibration &amp; diagnostics</strong>
+            <span>2D posterior, SBC, TARP &amp; trajectories</span>
+          </div>
+        </button>
+        <button type="button" class="pipeline-stage-tab" data-stage-view="stage-4" role="tab" aria-selected="false">
+          <span class="stage-badge">04</span>
+          <div class="stage-tab-text">
+            <strong>Provenance &amp; Audit</strong>
+            <span>Bundle discrepancy, replay &amp; code AST</span>
+          </div>
+        </button>
+      </div>
+    </section>
+
+    <div class="wrap layout" id="main-pipeline">
+      <div class="main-column">
+        <div id="study-loading" class="notice" role="status">Loading the prepared 14-method SBI pipeline and visual diagnostics…</div>
+
+        <div id="study-content" hidden>
+          <!-- ================================================================
+               STAGE 1: THE EPIDEMIC MODEL & PRIOR PREDICTIVE CHECK
+               ================================================================ -->
+          <section class="card study-card pipeline-section" id="stage-1-model" data-stage="stage-1" aria-labelledby="stage1-heading">
+            <div class="card-head">
+              <div>
+                <div class="kicker"><span class="section-number">01</span> STAGE 1 · EPIDEMIC SIMULATOR &amp; MISSPECIFICATION DIAGNOSIS</div>
+                <h2 id="stage1-heading">From hidden infections to reported cases.</h2>
+                <p>Before fitting any neural network, check what the simulator generates and how under-reporting distorts the data.</p>
+              </div>
+              <span class="pill pill-neutral">STEP (i) · PRIOR &amp; SHIFT CHECK</span>
+            </div>
+
+            <!-- Plain-English Explainer Banner -->
+            <div class="explain-callout">
+              <div class="explain-icon" aria-hidden="true">💡</div>
+              <div class="explain-body">
+                <strong>Plain-English Intuition: Why a shift to 25% reporting fools standard estimators</strong>
+                <p>
+                  In a closed population of <strong>N = 500</strong> people, an outbreak spreads at transmission rate <strong>β</strong> and individuals recover at rate <strong>γ</strong> (giving basic reproduction number <strong>R₀ = β / γ</strong>). Because we only observe a fraction <strong>ρ</strong> of new infections as daily reported cases <strong>Y<sub>t</sub></strong>, halving the reporting rate from <strong>ρ = 50%</strong> to <strong>ρ = 25%</strong> cuts total case counts in half (<em>scale-sensitive summaries</em>) while leaving the day the wave peaks (<em>timing/shape summaries</em>) unchanged. Standard estimators mistake fewer reported cases for a less contagious virus (lower β).
+                </p>
+              </div>
+            </div>
+
+            <div class="study-stats" id="study-stats"></div>
+
+            <!-- Visual SIR Model & Trajectories -->
+            <div id="sir-model-box"></div>
+
+            <!-- Step (i) Visual Prior Predictive Fan & Summary Shift Chart -->
+            <div class="subsection-block" id="prior-check-details">
+              <div class="subsection-header">
+                <div>
+                  <span class="guide-kicker">WORKFLOW STEP (i) · DATA-SPACE &amp; SUMMARY-SPACE DIAGNOSIS</span>
+                  <h3>Prior Predictive Envelope &amp; Scale-vs-Shape Conflict</h3>
+                </div>
+                <span class="pill pill-neutral">MMD &amp; RESIDUAL Z-SCORES</span>
+              </div>
+              <div id="prior-predictive-box"></div>
+            </div>
+
+            <!-- Collapsible Literature Formulations & Execution Audit Reference -->
+            <div class="accordions-row">
+              <details class="sbc-details" id="sir-model-details">
+                <summary>📚 Reference: Three Canonical SIR Formulations Across SBI Papers &amp; 6 Summary Equations</summary>
+                <div id="sir-literature-box"></div>
+              </details>
+
+              <details class="sbc-details" id="execution-audit-details">
+                <summary>🔍 Execution Audit: How All 14 Models, Surrogates &amp; Checks Were Executed (5 Tiers)</summary>
+                <div id="execution-audit-box"></div>
+              </details>
+            </div>
+          </section>
+
+          <!-- ================================================================
+               STAGE 2: 14-METHOD BENCHMARK COMPARISON
+               ================================================================ -->
+          <section class="card study-card pipeline-section" id="stage-2-methods" data-stage="stage-2" aria-labelledby="study-heading">
+            <div class="card-head">
+              <div>
+                <div class="kicker"><span class="section-number">02</span> STAGE 2 · COMPARE 14 SBI ESTIMATORS ACROSS 3 FAMILIES</div>
+                <h2 id="study-heading">Fourteen methods. One shared benchmark.</h2>
+                <p>All 14 methods share the same 2,048-simulation training bank (ρ = 50%) and are evaluated across 128 independent outbreaks under both Matched (50%) and Shifted (25%) reporting.</p>
+              </div>
+              <span class="pill pill-neutral">STEP (ii) · 14 METHODS · 18 RUNS</span>
+            </div>
+
+            <div class="explain-callout">
+              <div class="explain-icon" aria-hidden="true">📊</div>
+              <div class="explain-body">
+                <strong>How to read this comparison (Click any method in the chart or table to inspect it in Stage 3)</strong>
+                <p>
+                  We want <strong>90% nominal credible intervals</strong> to cover the true parameter <strong>~90% of the time</strong> (the vertical dashed target line). Under <strong>50% Matched Reporting</strong> (teal circles), neural spline and flow-matching estimators achieve near-ideal ~88–91% coverage. Under <strong>25% Shifted Reporting</strong> (amber circles), standard neural flows drop to ~45–56% coverage on β, while <strong>RNPE (Spike-and-Slab Summary Criticism)</strong> and <strong>Generalised Bayes</strong> detect or downweight the shifted scale summaries and maintain ~84–88% coverage.
+                </p>
+              </div>
+            </div>
+
+            <!-- Filter Bar -->
+            <div class="filter-bar-wrap">
+              <div class="filter-bar" id="family-filter" role="toolbar" aria-label="Filter methods by family">
+                <button type="button" class="filter-chip active" data-filter="all">All 14 methods (18 runs)</button>
+                <button type="button" class="filter-chip" data-filter="Neural estimators">Neural Flows &amp; Diffusion (8)</button>
+                <button type="button" class="filter-chip" data-filter="Classical">Classical ABC / BSL / GP (4)</button>
+                <button type="button" class="filter-chip" data-filter="Structured and robust">Robust &amp; Misspecification-Aware (2)</button>
+                <button type="button" class="filter-chip" data-filter="multiseed">Multi-Seed Stability (FMPE vs NPE-NSF)</button>
+              </div>
+              <div class="chart-metric-bar" role="group" aria-label="Visual comparison metric">
+                <span class="metric-label">Plot metric:</span>
+                <button type="button" class="metric-chip active" data-metric="beta_cov">β 90% Coverage</button>
+                <button type="button" class="metric-chip" data-metric="r0_cov">R₀ = β/γ Coverage</button>
+                <button type="button" class="metric-chip" data-metric="beta_mae">β Accuracy (MAE)</button>
+                <button type="button" class="metric-chip" data-metric="tarp_iace">Joint TARP Calibration Error</button>
+              </div>
+            </div>
+
+            <!-- NEW: Visual 14-Method Forest / Dumbbell Chart -->
+            <div id="method-comparison-chart" class="visual-chart-panel" aria-label="Visual comparison of all 14 SBI methods"></div>
+
+            <!-- Clean Interactive Table -->
+            <div class="table-wrap">
+              <table class="results-table">
+                <caption>Step (ii) · Click any row to load its 2D posterior and SBC/TARP calibration in Stage 3</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Estimator &amp; Seed</th>
+                    <th scope="col">Execution Tier &amp; Budget</th>
+                    <th scope="col">β Coverage (Matched 50%)</th>
+                    <th scope="col">β Coverage (Shifted 25%)</th>
+                    <th scope="col">γ Coverage (M / S)</th>
+                    <th scope="col">R₀ = β/γ Coverage (M / S)</th>
+                    <th scope="col">Calibration Verdict (TARP &amp; L-C2ST)</th>
+                  </tr>
+                </thead>
+                <tbody id="study-rows"></tbody>
+              </table>
+            </div>
+            <p class="study-note">
+              <strong>Tip:</strong> Click any bar in the chart or any row in the table above to inspect that estimator in detail below.
+            </p>
+          </section>
+
+          <!-- ================================================================
+               STAGE 3: DEEP-DIVE DIAGNOSTICS & LIVE POSTERIOR PREDICTIVE CHECK
+               ================================================================ -->
+          <section class="card study-card pipeline-section" id="stage-3-diagnostics" data-stage="stage-3" aria-labelledby="stage3-heading">
+            <div class="card-head">
+              <div>
+                <div class="kicker"><span class="section-number">03</span> STAGE 3 · SELECTED ESTIMATOR DIAGNOSTICS</div>
+                <h2 id="stage3-heading">Inspect posterior geometry, calibration &amp; fit.</h2>
+                <p>Changing the estimator, seed, or reporting scenario below automatically updates the method card, global SBC/TARP calibration, 2D joint posterior cloud, and prepared diagnostics.</p>
+              </div>
+              <span class="pill pill-lavender">STEPS (iii) &amp; (iv) · PREPARED</span>
+            </div>
+
+            <!-- Interactive Sticky Control Bar -->
+            <div class="controls workbench-controls">
+              <label>1. Active Estimator
+                <select id="method-select">
+                  <optgroup label="Neural Estimators (Sections 3.3–3.7)">
+                    <option value="FMPE">FMPE · Flow-Matching Posterior</option>
+                    <option value="NPE_NSF">NPE (NSF) · Neural Spline Flow</option>
+                    <option value="NPE_MAF">NPE (MAF + Embed) · Autoregressive Flow</option>
+                    <option value="NPE_Ensemble">NPE Ensemble · 3-Flow Deep Ensemble</option>
+                    <option value="NPSE">NPSE · Score-Based Diffusion</option>
+                    <option value="TSNPE">TSNPE · Truncated Sequential NPE</option>
+                    <option value="NLE">NLE · Neural Likelihood + MCMC</option>
+                    <option value="BNRE">BNRE · Balanced Ratio Estimation + MCMC</option>
+                  </optgroup>
+                  <optgroup label="Structured &amp; Robust (Sections 3.8–3.9)">
+                    <option value="RNPE_Robust">RNPE · Spike-and-Slab Summary Criticism</option>
+                    <option value="GenBayes_Scoring">Generalised Bayes · Robust Scoring Rule</option>
+                  </optgroup>
+                  <optgroup label="Classical (Sections 3.1–3.2)">
+                    <option value="ABC_Reject">Rejection ABC</option>
+                    <option value="ABC_SMC">ABC-SMC (3 rounds)</option>
+                    <option value="BSL">BSL · Bayesian Synthetic Likelihood</option>
+                    <option value="BOLFI_GP">BOLFI / GP Surrogate (256-sim low budget)</option>
+                  </optgroup>
+                </select>
+              </label>
+              <label>2. Training Seed
+                <select id="seed-select">
+                  <option value="711">711 (Primary)</option>
+                  <option value="712">712 (Replication 2)</option>
+                  <option value="713">713 (Replication 3)</option>
+                </select>
+              </label>
+              <label>3. Observation Scenario
+                <select id="scenario-select">
+                  <option value="matched">Matched reporting (50%)</option>
+                  <option value="shifted">Shifted reporting (25%)</option>
+                </select>
+              </label>
+              <button id="predict-button" disabled title="Available in the local version" class="primary-button" type="button">
+                Predictive check · local only
+              </button>
+            </div>
+
+            <!-- Selected Method Guide Card -->
+            <div id="method-guide-card" class="method-guide-card"></div>
+
+            <!-- Step (iii): Global Cohort Calibration (SBC Rank Histograms + TARP Curve) -->
+            <div class="subsection-block">
+              <div class="subsection-header">
+                <div>
+                  <span class="guide-kicker">WORKFLOW STEP (iii) · COHORT CALIBRATION ACROSS 128 VALIDATION OUTBREAKS</span>
+                  <h3>Marginal SBC Rank Histograms &amp; Joint TARP Coverage Curve</h3>
+                </div>
+                <span class="pill pill-neutral">128 DATASETS</span>
+              </div>
+              <p class="calib-explainer">
+                <strong>Left (Marginal SBC):</strong> If a posterior is well-calibrated, the rank of the true parameter among posterior draws is uniform (bars stay near the dashed target line of 16 inside the shaded 95% confidence band). A pile-up on the right means the posterior systematically <em>underestimates</em> the parameter.
+                <strong>Right (Joint TARP):</strong> Measures joint 2D credible region coverage across all credibility levels α ∈ [0, 1]. Hugging the dashed diagonal means well-calibrated joint uncertainty.
+              </p>
+              <div class="calibration-grid">
+                <div id="sbc-ranks" class="calib-card"></div>
+                <div id="tarp-panel" class="calib-card"></div>
+              </div>
+            </div>
+
+            <!-- Step (iv): Live Local Posterior Predictive & 2D Joint Posterior -->
+            <div id="predict-result" class="predict-result" aria-live="polite" hidden></div>
+
+            <details class="sbc-details">
+              <summary>🔒 Benchmark Specification, Interpretation Notes &amp; SHA-256 Provenance Hashes</summary>
+              <div id="study-provenance"></div>
+            </details>
+
+            <div class="export-line">
+              <button id="export-button" class="secondary-button" type="button">Export JSON evidence report ↓</button>
+              <span>Downloads all 14-method metrics, TARP/SBC/L-C2ST diagnostics, and cryptographic hashes.</span>
+            </div>
+          </section>
+        </div>
+
+        <!-- ================================================================
+             STAGE 4: PROVENANCE, PAPER CODE AUDIT & REPLAY
+             ================================================================ -->
+        <section class="card study-card pipeline-section" id="stage-4-detective" data-stage="stage-4" aria-labelledby="experiment-heading">
+          <div class="card-head">
+            <div>
+              <div class="kicker"><span class="section-number">04</span> STAGE 4 · PROVENANCE, PAPER CODE AUDIT &amp; REPLAY</div>
+              <h2 id="experiment-heading">Audit the code, trace the bundle &amp; test replay.</h2>
+              <p>Scientific validation goes beyond numbers: inspect pinned paper source code for equation drift, examine an inherited experiment bundle with a documentation discrepancy, and test bitwise replay.</p>
+            </div>
+            <span class="pill pill-lavender">PROVENANCE</span>
+          </div>
+
+          <!-- Part 4A: Pinned Paper Source Code Investigation (RSNL vs RNPE) -->
+          <div class="detective-subcard" aria-labelledby="paper-heading">
+            <div class="card-head compact">
+              <div>
+                <div class="kicker"><span class="section-number">4A</span> PAPER-TO-CODE CORRESPONDENCE AUDIT</div>
+                <h3 id="paper-heading" class="subcard-title">Follow a scientific claim into published source code (RSNL vs RNPE)</h3>
+                <p>Does the time-varying reproduction number R₀(t) actually drive new infections in the pinned RSNL repository, compared to Ward et al.'s RNPE Julia code?</p>
+              </div>
+              <span class="pill pill-lavender">AST SOURCE AUDIT</span>
+            </div>
+            <div class="check-action">
+              <div class="check-symbol" aria-hidden="true">⌁</div>
+              <div class="check-description">
+                <strong>Evaluate stochastic SIR drift sensitivity to R₀ in pinned paper files</strong>
+                <span>Parses <code>rsnl_sir.py</code> and <code>rnpe_sir.jl</code> via Python AST and evaluates <code>dS/dt, dI/dt, dR₀/dt</code> at R₀ = 0.5 vs R₀ = 2.0.</span>
+              </div>
+              <button id="audit-button" disabled title="Available in the local version" class="secondary-button" type="button">Source check · local only</button>
+            </div>
+            <div id="audit-result" class="predict-result" aria-live="polite" hidden></div>
+          </div>
+
+          <!-- Part 4B: Original Inherited Bundle, Interactive File Inspector & Discrepancy -->
+          <div class="detective-subcard" aria-labelledby="bundle-sub-heading">
+            <div class="card-head compact">
+              <div>
+                <div class="kicker"><span class="section-number">4B</span> INHERITED EXPERIMENT BUNDLE &amp; CAPTION DISCREPANCY</div>
+                <h3 id="bundle-sub-heading" class="subcard-title">A posterior, inherited: compare the figure caption against the recorded run</h3>
+                <p id="bundle-discrepancy-lead">Click any file in the bundle on the right to inspect its exact lines. Compare the reporting rate stated in <code>README.md</code> against <code>config.json</code> and <code>run_manifest.json</code>.</p>
+              </div>
+              <span class="pill pill-neutral">1-PARAM FMPE BUNDLE</span>
+            </div>
+
+            <div class="experiment-grid">
+              <div class="chart-panel">
+                <div class="chart-heading">
+                  <div>
+                    <span class="chart-label">TARGET FIGURE · SAVED BUNDLE</span>
+                    <h3>Transmission rate <span>β</span> (γ = 0.15 fixed)</h3>
+                  </div>
+                  <span class="chart-tag">FMPE · 21 DAYS</span>
+                </div>
+                <div class="chart-image">
+                  <img id="posterior-figure" src="./posterior.png" alt="Prepared posterior distribution for the transmission rate" hidden>
+                  <div class="figure-placeholder" id="figure-placeholder">
+                    <span class="placeholder-line"></span>
+                    <p>Waiting for the prepared posterior figure.</p>
+                  </div>
+                </div>
+                <div class="chart-foot">
+                  <span id="bundle-caption-foot">Comparing caption vs manifest reporting fraction…</span>
+                  <span>True β = 0.34 day⁻¹</span>
+                </div>
+              </div>
+
+              <div class="bundle-panel">
+                <div class="bundle-title">
+                  <span class="file-icon" aria-hidden="true">▤</span>
+                  <div>
+                    <strong>Experiment bundle files (click to view source)</strong>
+                    <span>7 evidence files verified by SHA-256</span>
+                  </div>
+                </div>
+                <div id="file-list" class="file-list">
+                  <div class="file-row muted">Loading bundle…</div>
+                </div>
+                <p class="bundle-foot"><span class="tiny-dot"></span> Synthetic data · Click any file row to inspect line-by-line</p>
+              </div>
+            </div>
+
+            <!-- Interactive File Viewer Drawer -->
+            <div id="bundle-file-viewer" class="bundle-file-viewer" hidden></div>
+
+            <!-- Computational Replay Check -->
+            <div class="check-action" style="margin-top: 14px;" aria-labelledby="check-heading">
+              <div class="check-symbol" aria-hidden="true">↻</div>
+              <div class="check-description">
+                <strong id="check-heading">Verify computational repeatability: Replay saved checkpoint (<code>posterior.pt</code>)</strong>
+                <span>Reloads the PyTorch flow-matching checkpoint with seed <code>314159</code> and compares 128 fresh draws against <code>posterior_samples.npy</code>.</span>
+              </div>
+              <button id="replay-button" disabled title="Available in the local version" class="secondary-button" type="button">Checkpoint replay · local only</button>
+            </div>
+            <div id="replay-result" class="replay-result" aria-live="polite" hidden></div>
+          </div>
+        </section>
+
+        <!-- ================================================================
+             BOTTOM SUMMARY: VALIDATION SCORECARD & QUICK GLOSSARY
+             ================================================================ -->
+        <section class="bottom-summary" id="validation-scorecard" aria-label="Validation scorecard and glossary">
+          <div class="status-card">
+            <div class="status-header-bar">
+              <div>
+                <div class="side-label">VALIDATION SCORECARD · PIPELINE SUMMARY</div>
+                <div class="status-intro">
+                  <h2>Three questions. <em>Different answers.</em></h2>
+                  <p>A reproducible file is a starting point—not proof that the epidemic model or posterior is valid.</p>
+                </div>
+              </div>
+              <div class="status-foot">
+                <span class="info-mark">i</span>
+                <p>Successful replay proves deterministic software execution, not calibration, parameter identifiability, or real-world validity.</p>
+              </div>
+            </div>
+            <div class="status-list">
+              <div class="status-row">
+                <span class="status-icon">⌁</span>
+                <div>
+                  <strong>1. Traceability &amp; Provenance</strong>
+                  <p>Do the code, config, manifest &amp; caption agree?</p>
+                </div>
+                <span class="state" id="trace-state">READY TO INSPECT</span>
+              </div>
+              <div class="status-row">
+                <span class="status-icon">↻</span>
+                <div>
+                  <strong>2. Computational Replay</strong>
+                  <p>Does resampling <code>posterior.pt</code> match the saved baseline?</p>
+                </div>
+                <span class="state" id="repro-state">NOT CHECKED</span>
+              </div>
+              <div class="status-row">
+                <span class="status-icon">✳</span>
+                <div>
+                  <strong>3. Statistical Adequacy</strong>
+                  <p>Is the estimator calibrated (SBC/TARP) and robust to reporting shift?</p>
+                </div>
+                <span class="state" id="adeq-state">EVALUATED IN STAGE 3</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="glossary-card">
+            <div class="glossary-head">
+              <div class="side-label">QUICK GLOSSARY · KEY TERMS</div>
+              <p id="demo-description" class="side-note-inline">The data and experiment are synthetic. All 14 estimators and validation checks are backed by SHA-256 verified artifacts.</p>
+            </div>
+            <dl class="glossary-list">
+              <div>
+                <dt>Why SBI? (Intractable Likelihood)</dt>
+                <dd>Stochastic SIR models do not have a tractable likelihood <code>p(Y | θ)</code> because latent compartments (S, I, R) are unobserved. SBI infers parameters directly from forward simulations.</dd>
+              </div>
+              <div>
+                <dt>β, γ &amp; R₀ = β/γ</dt>
+                <dd>Transmission rate (β), recovery rate (γ), and basic reproduction number (expected secondary cases per infection).</dd>
+              </div>
+              <div>
+                <dt>Matched (50%) vs Shifted (25%)</dt>
+                <dd>Models are trained assuming 50% of cases are reported. Under Shifted data, only 25% are reported—testing robustness to misspecification.</dd>
+              </div>
+              <div>
+                <dt>90% Coverage &amp; SBC</dt>
+                <dd>Across 128 test outbreaks, a calibrated 90% credible interval should contain the true parameter ~90% of the time, with flat SBC rank histograms.</dd>
+              </div>
+              <div>
+                <dt>Joint TARP (IACE)</dt>
+                <dd>Tests joint 2D (β, γ) credible regions. Lower Integrated Absolute Coverage Error (IACE → 0) means better joint calibration.</dd>
+              </div>
+              <div>
+                <dt>RNPE Spike-and-Slab</dt>
+                <dd>Critiques each summary statistic, flagging scale summaries that conflict with epidemic timing under under-reporting.</dd>
+              </div>
+            </dl>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <footer class="wrap footer">
+      <span><strong>Epi Simulation: Simulation-Based Inference for Epidemiology</strong> <span>·</span> Coordinated 14-method benchmark &amp; explainable SBI validation pipeline.</span>
+      <span>BUILT FOR SCIENTIFIC TRANSPARENCY ✳</span>
+    </footer>
+  </main>
+</body>
+</html>
