@@ -1575,6 +1575,106 @@
     });
   });
 
+  // Additional infinitives from the dictionary on pages 396–403 of Book Bet.
+  // Do not generate paradigms for these: weak and irregular roots need checking.
+  const BOOK_BET_DICTIONARY = [
+    ["לבחון", "livchon", "to examine / test", "ב-ח-נ", "paal"],
+    ["לבלות", "levalot", "to spend time", "ב-ל-ה", "piel"],
+    ["לאחר", "le'acher", "to be late", "א-ח-ר", "piel"],
+    ["לגזור", "ligzor", "to cut", "ג-ז-ר", "paal"],
+    ["לגלות", "legalot", "to discover / reveal", "ג-ל-ה", "piel"],
+    ["לגרום", "ligrom", "to cause", "ג-ר-מ", "paal"],
+    ["לדרוש", "lidrosh", "to demand", "ד-ר-ש", "paal"],
+    ["להאכיל", "leha'achil", "to feed", "א-כ-ל", "hifil"],
+    ["להגדיל", "lehagdil", "to enlarge", "ג-ד-ל", "hifil"],
+    ["להודיע", "lehodi'a", "to inform / announce", "י-ד-ע", "hifil"],
+    ["להופיע", "lehofi'a", "to appear / perform", "י-פ-ע", "hifil"],
+    ["להזדקן", "lehizdaken", "to grow old", "ז-ק-נ", "hitpael"],
+    ["להחזיק", "lehachzik", "to hold", "ח-ז-ק", "hifil"],
+    ["להמליץ", "lehamlitz", "to recommend", "מ-ל-צ", "hifil"],
+    ["להמציא", "lehamtzi", "to invent / make up", "מ-צ-א", "hifil"],
+    ["להסריט", "lehasrit", "to film", "ס-ר-ט", "hifil"],
+    ["להעביר", "leha'avir", "to pass / transfer", "ע-ב-ר", "hifil"],
+    ["להעדיף", "leha'adif", "to prefer", "ע-ד-פ", "hifil"],
+    ["להפגין", "lehafgin", "to demonstrate", "פ-ג-נ", "hifil"],
+    ["להפוך", "lahafokh", "to turn over / become", "ה-פ-כ", "paal"],
+    ["להצטרף", "lehitztaref", "to join", "צ-ר-פ", "hitpael"],
+    ["להקטין", "lehaktin", "to reduce / diminish", "ק-ט-נ", "hifil"],
+    ["להקריב", "lehakriv", "to sacrifice", "ק-ר-ב", "hifil"],
+    ["להשאיר", "lehash'ir", "to leave behind", "ש-א-ר", "hifil"],
+    ["להשתתף", "lehishtatef", "to participate", "ש-ת-פ", "hitpael"],
+    ["להתגרש", "lehitgaresh", "to divorce", "ג-ר-ש", "hitpael"],
+    ["להתחמם", "lehitchamem", "to warm up", "ח-מ-מ", "hitpael"],
+    ["להתייוון", "lehityaven", "to become Hellenized", "י-ו-נ", "hitpael"],
+    ["להתלכלך", "lehitlakhlekh", "to become dirty", "ל-כ-ל-כ", "hitpael"],
+    ["להתנגד", "lehitnaged", "to oppose", "נ-ג-ד", "hitpael"],
+    ["להתנהג", "lehitnaheg", "to behave", "נ-ה-ג", "hitpael"],
+    ["להתנשק", "lehitnashek", "to kiss one another", "נ-ש-ק", "hitpael"],
+    ["להתפתח", "lehitpateach", "to develop", "פ-ת-ח", "hitpael"],
+    ["להתקדם", "lehitkadem", "to progress", "ק-ד-מ", "hitpael"],
+    ["להתקרב", "lehitkarev", "to approach", "ק-ר-ב", "hitpael"],
+    ["להתקשר", "lehitkasher", "to phone / contact", "ק-ש-ר", "hitpael"],
+    ["להתרגל", "lehitragel", "to get used to", "ר-ג-ל", "hitpael"],
+    ["לזרוק", "lizrok", "to throw", "ז-ר-ק", "paal"],
+    ["לחבר", "lechaber", "to compose / connect", "ח-ב-ר", "piel"],
+    ["לחקות", "lechakot", "to imitate", "ח-ק-ה", "piel"],
+    ["ללדת", "laledet", "to give birth", "י-ל-ד", "paal"],
+    ["ליצור", "litzor", "to create", "י-צ-ר", "paal"],
+    ["לכבוש", "likbosh", "to conquer", "כ-ב-ש", "paal"],
+    ["לכבות", "lechabot", "to turn off / extinguish", "כ-ב-ה", "piel"],
+    ["לכפות", "likpot", "to impose", "כ-פ-ה", "paal"],
+    ["ללוות", "lelavot", "to accompany / escort", "ל-ו-ה", "piel"],
+    ["למחוא", "limcho", "to clap (hands)", "מ-ח-א", "paal"],
+    ["למנוע", "limnoa", "to prevent", "מ-נ-ע", "paal"],
+    ["להיזהר", "lehizaher", "to be careful", "ז-ה-ר", "nifal"],
+    ["לנצל", "lenatzel", "to use / take advantage of", "נ-צ-ל", "piel"],
+    ["לנקות", "lenakot", "to clean", "נ-ק-ה", "piel"],
+    ["להיעזב", "lehe'azev", "to be left / abandoned", "ע-ז-ב", "nifal"],
+    ["להיעזר", "lehe'azer", "to be helped / assisted", "ע-ז-ר", "nifal"],
+    ["להיעצר", "lehe'atzar", "to stop / be arrested", "ע-צ-ר", "nifal"],
+    ["להיעקץ", "lehe'aketz", "to be stung", "ע-ק-צ", "nifal"],
+    ["להיפגע", "lehipaga", "to be hurt", "פ-ג-ע", "nifal"],
+    ["להיפצע", "lehipatzea", "to be injured", "פ-צ-ע", "nifal"],
+    ["להיפרד", "lehipared", "to part from", "פ-ר-ד", "nifal"],
+    ["להירדף", "lehiradef", "to be chased", "ר-ד-פ", "nifal"],
+    ["להירצח", "leheratzach", "to be murdered", "ר-צ-ח", "nifal"],
+    ["להישבר", "lehishaver", "to be broken", "ש-ב-ר", "nifal"],
+    ["להישכח", "lehishakheach", "to be forgotten", "ש-כ-ח", "nifal"],
+    ["להיאסף", "lehe'asef", "to be gathered / collected", "א-ס-פ", "nifal"],
+    ["להידלק", "lehidalek", "to be ignited / lit", "ד-ל-ק", "nifal"],
+    ["ליהנות", "lehanot", "to enjoy", "ה-נ-ה", "nifal"],
+    ["לספור", "lispor", "to count", "ס-פ-ר", "paal"],
+    ["לעסוק", "la'asok", "to be engaged in / deal with", "ע-ס-ק", "paal"],
+    ["לעצור", "la'atzor", "to stop / arrest", "ע-צ-ר", "paal"],
+    ["לעקוץ", "la'akotz", "to sting", "ע-ק-צ", "paal"],
+    ["לפגוע", "lifgoa", "to hurt / insult", "פ-ג-ע", "paal"],
+    ["לפנות", "lefanot", "to clear / evacuate", "פ-נ-ה", "piel"],
+    ["לפצוע", "liftzoa", "to injure", "פ-צ-ע", "paal"],
+    ["לפתור", "liftor", "to solve", "פ-ת-ר", "paal"],
+    ["לצדוק", "litzdok", "to be right / correct", "צ-ד-ק", "paal"],
+    ["לצלם", "letzalem", "to photograph", "צ-ל-מ", "piel"],
+    ["לצפות", "letzapot", "to expect", "צ-פ-ה", "piel"],
+    ["לקוות", "lekavot", "to hope", "ק-ו-ה", "piel"],
+    ["לקרר", "lekarer", "to cool", "ק-ר-ר", "piel"],
+    ["לרדוף", "lirdof", "to chase", "ר-ד-פ", "paal"],
+    ["לרגש", "leragesh", "to excite / move emotionally", "ר-ג-ש", "piel"],
+    ["לשבור", "lishbor", "to break", "ש-ב-ר", "paal"],
+    ["לשלוט", "lishlot", "to control", "ש-ל-ט", "paal"],
+    ["לשפוך", "lishpokh", "to pour", "ש-פ-כ", "paal"],
+    ["לתאר", "leta'er", "to describe", "ת-א-ר", "piel"]
+  ];
+  const existingInfinitives = new Set(VERBS_LIST.map((v) => stripNikud(v.infinitiveUnvoweled || v.infinitive)));
+  BOOK_BET_DICTIONARY.forEach(([infinitive, translit, english, root, binyan], index) => {
+    if (existingInfinitives.has(infinitive)) return;
+    existingInfinitives.add(infinitive);
+    VERBS_LIST.push({
+      id: `book_bet_dictionary_${index + 1}`, infinitive, infinitiveUnvoweled: infinitive,
+      infinitiveParts: [], translit, english, root, binyan, aliases: [], vocabularyOnly: true,
+      preposition: "—", gizrah: "—", gizrahTip: "Conjugations are not yet available for this entry.",
+      semanticNote: "From the dictionary in Hebrew from Scratch, Book Bet.", examples: [], tables: {}
+    });
+  });
+
   // Additional entries from the Lilmod Aleph Beth verb list. Each entry starts
   // as vocabulary only; checked forms below replace this when available.
   (window.LILMOD_VERBS || []).forEach((entry) => {
@@ -1599,6 +1699,7 @@
   };
   VERBS_LIST.forEach((verb) => {
     const checked = (window.VERIFIED_FORMS && window.VERIFIED_FORMS[verb.id]) ||
+      (window.BOOK_BET_DICTIONARY_FORMS && window.BOOK_BET_DICTIONARY_FORMS[verb.id]) ||
       (window.LILMOD_FORMS && window.LILMOD_FORMS[verb.id]);
     if (!checked) return;
     const tables = { present: {}, past: {} };

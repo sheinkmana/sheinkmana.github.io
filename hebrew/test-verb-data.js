@@ -2,6 +2,7 @@
 const assert = require('node:assert/strict');
 global.window = {};
 require('./data/verified-forms.js');
+require('./data/book-bet-dictionary-forms.js');
 require('./data/lilmod-verbs.js');
 require('./data/verbs.js');
 
@@ -38,4 +39,29 @@ assert.equal(bySpelling.get('יכול').infinitive, 'יָכוֹל');
 assert.match(bySpelling.get('יכול').gizrahTip, /rare/);
 assert.match(bySpelling.get('להיות').presentNote, /omits/);
 assert.ok(bySpelling.get('לומר').aliases.includes('לאמור'));
+const dictionary = verbs.filter((v) => v.id.startsWith('book_bet_dictionary_'));
+assert.equal(dictionary.length, 83);
+for (const spelling of ['לבחון', 'להתייוון', 'לחקות', 'להידלק', 'לשפוך', 'לתאר']) {
+  const verb = dictionary.find((v) => v.infinitiveUnvoweled === spelling);
+  assert.ok(verb, `Missing Book Bet dictionary verb ${spelling}`);
+  assert.equal(verb.verifiedForms, true);
+  assert.equal(Object.keys(verb.tables.present).length, 4);
+  assert.equal(Object.keys(verb.tables.past).length, 9);
+}
+for (const verb of dictionary) {
+  assert.equal(verb.verifiedForms, true, `${verb.infinitiveUnvoweled}: missing verified forms`);
+  assert.equal(verb.vocabularyOnly, false);
+  assert.match(verb.sourceUrl, /^https:\/\/www\.pealim\.com\/dict\/\d+-/);
+  assert.equal(Object.keys(verb.tables.present).length, 4);
+  assert.equal(Object.keys(verb.tables.past).length, 9);
+  for (const table of Object.values(verb.tables)) {
+    for (const cell of Object.values(table)) assert.ok(cell.full && cell.translit && cell.unvoweled);
+  }
+}
+assert.notEqual(dictionary.find((v) => v.infinitiveUnvoweled === 'לחקות').root,
+  verbs.find((v) => v.id === 'lechakot').root, 'imitate and wait are different verbs');
+assert.equal(dictionary.find((v) => v.infinitiveUnvoweled === 'לחקות').sourceUrl, 'https://www.pealim.com/dict/669-lechakot/');
+assert.equal(dictionary.find((v) => v.infinitiveUnvoweled === 'להיפצע').tables.present.fs.translit, "niftza'at");
+assert.equal(dictionary.find((v) => v.infinitiveUnvoweled === 'לחבר').tables.present.ms.translit, 'mechaber');
+assert.equal(dictionary.find((v) => v.infinitiveUnvoweled === 'לחבר').tables.past['3ms'].translit, 'chiber');
 console.log('All 78 source entries are present; the 61 additions have checked forms and links.');

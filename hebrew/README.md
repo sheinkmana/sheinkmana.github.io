@@ -6,6 +6,8 @@ Verb lookup, conjugation, and training use the bundled data and rules in this fo
 
 The built-in deck includes all entries from the [Lilmod Aleph Beth verb list](https://lilmod-aleph-beth.com/all-the-verbs/). Their available present and past forms were checked against the individual Pealim links in the explorer. Modern Hebrew normally omits the present-tense copula for להיות, so that entry has past forms and an explanatory note instead of a present-tense paradigm. The trainer excludes incomplete paradigms.
 
+The deck also includes vocabulary from *Hebrew from Scratch*, Book Bet, including additional verbs from its dictionary on pages 396–403. The dictionary entries have present and past forms checked against their linked Pealim entries.
+
 ## Run Locally
 Open `index.html` directly in any browser, or serve locally:
 ```bash
