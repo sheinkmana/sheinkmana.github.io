@@ -1266,13 +1266,13 @@ function renderStudyRows() {
     const tarpM = result.diagnostics?.matched_tarp;
     const tarpS = result.diagnostics?.shifted_tarp;
     const shiftBetaCov = result.shifted.transmission_rate.coverage;
-    let verdictText = 'Shift-sensitive';
+    let verdictText = 'Strongly under-covers under shift';
     let verdictCls = 'verdict-drop';
     if (shiftBetaCov >= 0.8) {
-      verdictText = 'Shift-robust (~85–90%)';
+      verdictText = 'Near nominal under shift';
       verdictCls = 'verdict-good';
     } else if (shiftBetaCov >= 0.68) {
-      verdictText = 'Broad / conservative';
+      verdictText = 'Under-covers under shift';
       verdictCls = 'verdict-warn';
     }
     diagCell.append(text('span', verdictText, `verdict-badge ${verdictCls}`));
